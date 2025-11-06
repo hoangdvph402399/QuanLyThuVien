@@ -19,8 +19,11 @@ class Inventory extends Model
         'purchase_date',
         'notes',
         'created_by',
+<<<<<<< HEAD
         'storage_type',
         'receipt_id',
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     ];
 
     protected $casts = [
@@ -48,6 +51,7 @@ class Inventory extends Model
         return $this->hasMany(Borrow::class, 'book_id', 'book_id');
     }
 
+<<<<<<< HEAD
     public function receipt()
     {
         return $this->belongsTo(InventoryReceipt::class, 'receipt_id');
@@ -70,6 +74,8 @@ class Inventory extends Model
         return $query->where('storage_type', 'Trung bay');
     }
 
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     // Scope để lấy sách có sẵn
     public function scopeAvailable($query)
     {

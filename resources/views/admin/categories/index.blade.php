@@ -45,6 +45,19 @@
                 </a>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+        <div class="col-md-6">
+            <div class="d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-secondary" onclick="selectAll()">
+                    <i class="fas fa-check-square me-1"></i>Chọn tất cả
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="clearSelection()">
+                    <i class="fas fa-square me-1"></i>Bỏ chọn
+                </button>
+            </div>
+        </div>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     </div>
 
     <!-- Form tìm kiếm và lọc -->

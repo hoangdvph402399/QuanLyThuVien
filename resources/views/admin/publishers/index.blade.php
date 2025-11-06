@@ -4,6 +4,17 @@
 
 @section('content')
 <div class="container-fluid">
+<<<<<<< HEAD
+=======
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Quản lý nhà xuất bản</li>
+        </ol>
+    </nav>
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">

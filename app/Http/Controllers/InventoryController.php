@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory;
 use App\Models\InventoryTransaction;
+<<<<<<< HEAD
 use App\Models\InventoryReceipt;
 use App\Models\DisplayAllocation;
 use App\Models\Book;
@@ -11,6 +12,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+=======
+use App\Models\Book;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 use Illuminate\Support\Str;
 
 class InventoryController extends Controller
@@ -343,6 +349,7 @@ class InventoryController extends Controller
             'data' => $inventory
         ]);
     }
+<<<<<<< HEAD
 
     /**
      * Hiển thị form nhập kho
@@ -802,4 +809,6 @@ class InventoryController extends Controller
             return back()->with('error', $errorMessage);
         }
     }
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }

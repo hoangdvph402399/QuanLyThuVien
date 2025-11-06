@@ -23,7 +23,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <form id="checkoutForm" method="POST" action="{{ route('orders.store') }}" novalidate>
+=======
+    <form id="checkoutForm">
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         @csrf
         <div class="row">
             <!-- Thông tin khách hàng -->
@@ -104,6 +108,7 @@
                                 <p class="mb-0"><strong>Nội dung:</strong> <span id="transferContent"></span></p>
                             </div>
                         </div>
+<<<<<<< HEAD
                         
                         <div id="codInfo" class="mt-3" style="display: none;">
                             <div class="alert alert-success">
@@ -113,6 +118,8 @@
                                 <p class="mb-0"><i class="fas fa-shield-alt"></i> Bạn chỉ cần thanh toán khi đã kiểm tra và nhận hàng</p>
                             </div>
                         </div>
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                     </div>
                 </div>
             </div>
@@ -180,7 +187,10 @@
     </form>
 </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 <!-- Toast thông báo -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="orderToast" class="toast" role="alert">
@@ -198,6 +208,7 @@
 
 @push('scripts')
 <script>
+<<<<<<< HEAD
 // Đảm bảo handler được attach ngay lập tức, không đợi DOMContentLoaded
 (function() {
     function initCheckout() {
@@ -232,11 +243,21 @@
         } catch (e) {
             console.error('Error initializing toast:', e);
         }
+=======
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutForm = document.getElementById('checkoutForm');
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+    const paymentMethodSelect = document.getElementById('payment_method');
+    const paymentInfo = document.getElementById('paymentInfo');
+    const transferContent = document.getElementById('transferContent');
+    const orderToast = new bootstrap.Toast(document.getElementById('orderToast'));
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
     // Xử lý thay đổi phương thức thanh toán
     paymentMethodSelect.addEventListener('change', function() {
         if (this.value === 'bank_transfer') {
             paymentInfo.style.display = 'block';
+<<<<<<< HEAD
             codInfo.style.display = 'none';
             transferContent.textContent = 'Thanh toan don hang - ' + new Date().toISOString().slice(0,10);
         } else if (this.value === 'cash_on_delivery') {
@@ -245,20 +266,29 @@
         } else {
             paymentInfo.style.display = 'none';
             codInfo.style.display = 'none';
+=======
+            transferContent.textContent = 'Thanh toan don hang - ' + new Date().toISOString().slice(0,10);
+        } else {
+            paymentInfo.style.display = 'none';
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
     });
 
     // Xử lý submit form
     checkoutForm.addEventListener('submit', function(e) {
         e.preventDefault();
+<<<<<<< HEAD
         e.stopPropagation();
         e.stopImmediatePropagation();
         
         console.log('Form submitted! Event prevented.');
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         
         const button = placeOrderBtn;
         const originalText = button.innerHTML;
         
+<<<<<<< HEAD
         // Kiểm tra validation trước khi submit
         const customerName = document.getElementById('customer_name').value.trim();
         const customerEmail = document.getElementById('customer_email').value.trim();
@@ -303,6 +333,8 @@
             return;
         }
         
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         // Hiển thị loading
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
         button.disabled = true;
@@ -310,6 +342,7 @@
         // Lấy dữ liệu form
         const formData = new FormData(this);
         
+<<<<<<< HEAD
         // Log form data để debug
         console.log('Form data:');
         for (let [key, value] of formData.entries()) {
@@ -436,10 +469,38 @@
             console.error('Error message:', error.message);
             console.error('Error stack:', error.stack);
             showToast('error', 'Có lỗi xảy ra khi kết nối đến server: ' + error.message);
+=======
+        // Gửi request
+        fetch('{{ route("orders.store") }}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast('success', data.message);
+                setTimeout(() => {
+                    window.location.href = data.redirect_url;
+                }, 1500);
+            } else {
+                showToast('error', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('error', 'Có lỗi xảy ra, vui lòng thử lại');
+        })
+        .finally(() => {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             button.innerHTML = originalText;
             button.disabled = false;
         });
     });
+<<<<<<< HEAD
     
     // Thêm event listener cho nút đặt hàng để log
     placeOrderBtn.addEventListener('click', function(e) {
@@ -512,6 +573,30 @@
         }
     }
 })();
+=======
+
+    // Hàm hiển thị toast
+    function showToast(type, message) {
+        const toastElement = document.getElementById('orderToast');
+        const toastMessage = document.getElementById('toastMessage');
+        
+        toastMessage.textContent = message;
+        
+        const toastHeader = toastElement.querySelector('.toast-header');
+        const icon = toastHeader.querySelector('i');
+        
+        if (type === 'success') {
+            icon.className = 'fas fa-check-circle text-success me-2';
+            toastElement.classList.remove('bg-danger');
+        } else {
+            icon.className = 'fas fa-exclamation-circle text-danger me-2';
+            toastElement.classList.add('bg-danger');
+        }
+        
+        orderToast.show();
+    }
+});
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 </script>
 @endpush
 

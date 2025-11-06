@@ -93,6 +93,7 @@
         }
 
         .rating {
+<<<<<<< HEAD
             font-size: 0.9em;
             color: #666;
             margin: 10px 0;
@@ -101,6 +102,28 @@
         .stars {
             color: orange;
             letter-spacing: 2px;
+=======
+            font-size: 0.95em;
+            color: #666;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            color: #ffa500;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .rating-value {
+            font-weight: 600;
+            color: #333;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         /* --- BUY OPTIONS & BUTTONS --- */
@@ -441,11 +464,26 @@
 
         .book-carousel-wrapper .book-rating {
             margin: 5px 0;
+<<<<<<< HEAD
         }
 
         .book-carousel-wrapper .book-rating .stars {
             color: #ffdd00;
             font-size: 0.9em;
+=======
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .book-carousel-wrapper .book-rating .stars {
+            color: #ffa500;
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            letter-spacing: 1px;
+            line-height: 1;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         .book-carousel-wrapper .book-price {
@@ -556,6 +594,18 @@
             font-weight: normal;
         }
 
+<<<<<<< HEAD
+=======
+        .book-meta-row { color:#666; font-size:0.95em; margin:8px 0; display:flex; gap:16px; flex-wrap:wrap; }
+        .book-section-title { font-size:1.2em; font-weight:700; margin:20px 0 12px; border-left:5px solid #d9534f; padding-left:10px; }
+        .book-content { line-height:1.8; color:#444; white-space:pre-line; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+        .card { background:#fff; border:1px solid #eee; border-radius:8px; overflow:hidden; text-decoration:none; color:inherit; display:block; }
+        .card-img { width:100%; height:180px; object-fit:cover; background:#f5f5f5; }
+        .card-body { padding:12px; }
+        .card-title { font-weight:600; font-size:0.95em; line-height:1.3; height:2.6em; overflow:hidden; }
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column;
@@ -609,6 +659,63 @@
                 @endauth
             </div>
         </div>
+<<<<<<< HEAD
+=======
+
+        <!-- Nội dung sách -->
+        <div class="book-detail-section">
+            <div class="book-section-title">Nội dung</div>
+            <div class="book-content">{{ $book->mo_ta ?? 'Đang cập nhật nội dung...' }}</div>
+        </div>
+
+        @php
+            $relatedBooks = \App\Models\Book::where('id','!=',$book->id)
+                ->when(isset($book->category_id), function($q) use ($book){ $q->where('category_id', $book->category_id); })
+                ->orderBy('created_at','desc')->limit(6)->get();
+        @endphp
+        @if($relatedBooks->count() > 0)
+        <div class="book-detail-section">
+            <div class="book-section-title">Sách liên quan</div>
+            <div class="grid">
+                @foreach($relatedBooks as $rb)
+                <a href="{{ route('books.show', $rb->id) }}" class="card">
+                    @if($rb->hinh_anh && file_exists(public_path('storage/'.$rb->hinh_anh)))
+                        <img class="card-img" src="{{ asset('storage/'.$rb->hinh_anh) }}" alt="{{ $rb->ten_sach }}">
+                    @else
+                        <div class="card-img"></div>
+                    @endif
+                    <div class="card-body">
+                        <div class="card-title">{{ $rb->ten_sach }}</div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
+        @php
+            $newsRel = \App\Models\Document::orderBy('published_date','desc')->orderBy('created_at','desc')->limit(6)->get();
+        @endphp
+        @if($newsRel->count() > 0)
+        <div class="book-detail-section">
+            <div class="book-section-title">Tin tức liên quan</div>
+            <div class="grid">
+                @foreach($newsRel as $doc)
+                <a href="{{ route('documents.show', $doc->id) }}" class="card">
+                    @if($doc->image && file_exists(public_path('storage/'.$doc->image)))
+                        <img class="card-img" src="{{ asset('storage/'.$doc->image) }}" alt="{{ $doc->title }}">
+                    @else
+                        <div class="card-img"></div>
+                    @endif
+                    <div class="card-body">
+                        <div class="card-title">{{ $doc->title }}</div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+        @endif
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         <div class="header-nav">
             <div class="search-bar">
                 <form action="{{ route('books.public') }}" method="GET" class="search-form">
@@ -639,19 +746,39 @@
                         <div class="rating">
                             @php
                                 $rating = $stats['average_rating'] ?? 4.5;
+<<<<<<< HEAD
                             @endphp
                             {{ number_format($rating, 1) }} 
                             <span class="stars">
                                 @for($i = 1; $i <= 5; $i++)
                                     @if($i <= floor($rating))
+=======
+                                $fullStars = floor($rating);
+                                $hasHalfStar = ($rating - $fullStars) >= 0.5;
+                            @endphp
+                            <span class="stars">
+                                @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= $fullStars)
+                                        ★
+                                    @elseif($i == $fullStars + 1 && $hasHalfStar)
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                                         ★
                                     @else
                                         ☆
                                     @endif
                                 @endfor
+<<<<<<< HEAD
                             </span> 
                             | {{ number_format($book->so_luot_xem ?? 0, 0, ',', '.') }} Lượt xem | 
                             {{ number_format($book->so_luong_ban ?? 0, 0, ',', '.') }} Đã bán
+=======
+                            </span>
+                            <span class="rating-value">{{ number_format($rating, 1) }}</span>
+                            <span style="color: #999;">|</span>
+                            <span>{{ number_format($book->so_luot_xem ?? 0, 0, ',', '.') }} Lượt xem</span>
+                            <span style="color: #999;">|</span>
+                            <span>{{ number_format($book->so_luong_ban ?? 0, 0, ',', '.') }} Đã bán</span>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                         </div>
 
                         <div class="buy-options">

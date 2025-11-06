@@ -1,4 +1,5 @@
 /* --- Cài đặt cơ bản --- */
+<<<<<<< HEAD
 :root {
     --primary-color: #d9534f; /* Màu đỏ nổi bật */
     --secondary-color: #337ab7; /* Màu xanh dương */
@@ -6,27 +7,57 @@
     --border-color: #eee;
     --gold-color: #f7b731; /* Màu vàng cam */
     --light-blue: #3498db; /* Màu xanh nhẹ */
+=======
+
+:root {
+    --primary-color: #d9534f;
+    /* Màu đỏ nổi bật */
+    --secondary-color: #337ab7;
+    /* Màu xanh dương */
+    --text-color: #333;
+    --border-color: #eee;
+    --gold-color: #f7b731;
+    /* Màu vàng cam */
+    --light-blue: #3498db;
+    /* Màu xanh nhẹ */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     font-family: Arial, sans-serif; /* Thay bằng font chữ phù hợp */
 }
 
 body {
     background-color: #f8f8f8; /* Nền nhẹ */
+=======
+    font-family: Arial, sans-serif;
+    /* Thay bằng font chữ phù hợp */
+}
+
+body {
+    background-color: #f8f8f8;
+    /* Nền nhẹ */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     color: var(--text-color);
 }
 
 .container {
     width: 90%;
+<<<<<<< HEAD
     max-width: 1200px; /* Giới hạn chiều rộng trang */
+=======
+    max-width: 1200px;
+    /* Giới hạn chiều rộng trang */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     margin: 0 auto;
     padding: 20px 0;
 }
 
+<<<<<<< HEAD
 /* --- 1. Bố cục chính (Sidebar + Main Content) --- */
 .main-layout {
     display: flex;
@@ -36,6 +67,22 @@ body {
 
 .sidebar {
     flex: 0 0 250px; /* Chiều rộng cố định cho Sidebar */
+=======
+
+/* --- 1. Bố cục chính (Sidebar + Main Content) --- */
+
+.main-layout {
+    display: flex;
+    gap: 20px;
+    /* Khoảng cách giữa sidebar và nội dung chính */
+    align-items: flex-start;
+    /* Quan trọng để sidebar không bị kéo dài hết chiều cao */
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    /* Chiều rộng cố định cho Sidebar */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     background-color: white;
     padding: 15px;
     border-radius: 5px;
@@ -52,8 +99,15 @@ body {
 }
 
 .main-content {
+<<<<<<< HEAD
     flex-grow: 1; /* Cho phép Main Content chiếm hết không gian còn lại */
     min-width: 0; /* Cho phép nội dung bên trong co lại */
+=======
+    flex-grow: 1;
+    /* Cho phép Main Content chiếm hết không gian còn lại */
+    min-width: 0;
+    /* Cho phép nội dung bên trong co lại */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     margin-top: 0;
     padding-top: 0;
     display: flex;
@@ -61,7 +115,13 @@ body {
     align-items: stretch;
 }
 
+<<<<<<< HEAD
 /* --- 2. Sidebar - Danh mục Sách --- */
+=======
+
+/* --- 2. Sidebar - Danh mục Sách --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .sidebar-title {
     font-size: 1.1em;
     padding: 15px;
@@ -89,7 +149,12 @@ body {
     margin: 0;
     flex: 1;
     overflow-y: auto;
+<<<<<<< HEAD
     max-height: calc(400px + 20px + 180px - 15px - 15px - 50px - 10px); /* Tổng chiều cao trừ padding, title, button */
+=======
+    max-height: calc(400px + 20px + 180px - 15px - 15px - 50px - 10px);
+    /* Tổng chiều cao trừ padding, title, button */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .category-list li {
@@ -167,7 +232,13 @@ body {
     font-size: 1.1em;
 }
 
+<<<<<<< HEAD
 /* --- 1. Header & Navigation --- */
+=======
+
+/* --- 1. Header & Navigation --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .main-header {
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -342,7 +413,13 @@ body {
     background-color: #c9302c;
 }
 
+<<<<<<< HEAD
 /* --- 3. Main Banner Section --- */
+=======
+
+/* --- 3. Main Banner Section --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .main-banner-section {
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -352,7 +429,11 @@ body {
     align-items: start;
 }
 
+<<<<<<< HEAD
 .main-banner-section > .banner-carousel-wrapper {
+=======
+.main-banner-section>.banner-carousel-wrapper {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     grid-column: 1;
     grid-row: 1;
 }
@@ -547,7 +628,11 @@ body {
     justify-content: flex-start;
 }
 
+<<<<<<< HEAD
 .right-panels > .panel-card {
+=======
+.right-panels>.panel-card {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     flex: 0 0 auto;
 }
 
@@ -639,7 +724,13 @@ body {
     color: var(--primary-color);
 }
 
+<<<<<<< HEAD
 /* --- Cooperation Section --- */
+=======
+
+/* --- Cooperation Section --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .cooperation-banner {
     background-color: #f8f5f0 !important;
     border-radius: 16px !important;
@@ -819,7 +910,13 @@ body {
     transform: translateX(5px);
 }
 
+<<<<<<< HEAD
 /* --- 4. Khu vực VIP và Sách Mua Nhiều Nhất --- */
+=======
+
+/* --- 4. Khu vực VIP và Sách Mua Nhiều Nhất --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .vip-account-section {
     display: flex;
     gap: 20px;
@@ -834,7 +931,12 @@ body {
     flex-grow: 1;
 }
 
+<<<<<<< HEAD
 .vip-title, .top-selling-title {
+=======
+.vip-title,
+.top-selling-title {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 15px;
@@ -863,7 +965,12 @@ body {
 }
 
 .vip-package {
+<<<<<<< HEAD
     flex: 0 0 120px; /* Kích thước cố định cho thẻ VIP */
+=======
+    flex: 0 0 120px;
+    /* Kích thước cố định cho thẻ VIP */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     height: 150px;
     border-radius: 8px;
     padding: 10px;
@@ -880,6 +987,7 @@ body {
     transform: translateY(-5px);
 }
 
+<<<<<<< HEAD
 /* Gradient background mô phỏng các thẻ VIP */
 .bg-vip-10 { 
     background: linear-gradient(135deg, #f7d794, #f3a68c); /* Vàng Cam */
@@ -899,6 +1007,34 @@ body {
 
 .bg-vip-12 { 
     background: linear-gradient(135deg, #2e86de, #1e3799); /* Xanh Dương */
+=======
+
+/* Gradient background mô phỏng các thẻ VIP */
+
+.bg-vip-10 {
+    background: linear-gradient(135deg, #f7d794, #f3a68c);
+    /* Vàng Cam */
+}
+
+.bg-vip-01 {
+    background: linear-gradient(135deg, #a4b0be, #7f8fa6);
+    /* Xám */
+}
+
+.bg-vip-03 {
+    background: linear-gradient(135deg, #5f27cd, #341f97);
+    /* Tím */
+}
+
+.bg-vip-06 {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    /* Xanh Teal */
+}
+
+.bg-vip-12 {
+    background: linear-gradient(135deg, #2e86de, #1e3799);
+    /* Xanh Dương */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .vip-duration {
@@ -920,9 +1056,18 @@ body {
     padding: 5px 0;
 }
 
+<<<<<<< HEAD
 /* --- 5. Cột Sách Mua/Xem Nhiều Nhất (Bên phải) --- */
 .top-selling-books {
     flex: 0 0 350px; /* Chiều rộng cố định cho cột này */
+=======
+
+/* --- 5. Cột Sách Mua/Xem Nhiều Nhất (Bên phải) --- */
+
+.top-selling-books {
+    flex: 0 0 350px;
+    /* Chiều rộng cố định cho cột này */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     padding-left: 20px;
     border-left: 1px solid var(--border-color);
 }
@@ -970,13 +1115,25 @@ body {
     white-space: nowrap;
 }
 
+<<<<<<< HEAD
 /* --- 6. Khu vực Sách --- */
+=======
+
+/* --- 6. Khu vực Sách --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .book-section {
     background-color: white;
     padding: 20px;
     margin-bottom: 20px;
+<<<<<<< HEAD
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+=======
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -1029,9 +1186,16 @@ body {
 .book-list {
     display: flex;
     /* Sử dụng flex-wrap nếu muốn xuống dòng, hoặc overflow-x để tạo thanh trượt */
+<<<<<<< HEAD
     overflow-x: auto; 
     overflow-y: hidden;
     padding-bottom: 10px; /* Khoảng trống cho scrollbar */
+=======
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    /* Khoảng trống cho scrollbar */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     gap: 15px;
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -1062,7 +1226,13 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+<<<<<<< HEAD
 /* Navigation buttons cho book carousel */
+=======
+
+/* Navigation buttons cho book carousel */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .book-nav {
     position: absolute;
     top: 50%;
@@ -1129,7 +1299,12 @@ body {
 }
 
 .book-card {
+<<<<<<< HEAD
     flex: 0 0 180px; /* Chiều rộng cố định cho mỗi thẻ sách */
+=======
+    flex: 0 0 180px;
+    /* Chiều rộng cố định cho mỗi thẻ sách */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s;
@@ -1150,7 +1325,12 @@ body {
 
 .book-cover {
     width: 100%;
+<<<<<<< HEAD
     height: 250px; /* Chiều cao cố định cho bìa sách */
+=======
+    height: 250px;
+    /* Chiều cao cố định cho bìa sách */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     background-color: #ddd;
     margin-bottom: 10px;
     border: 1px solid var(--border-color);
@@ -1213,6 +1393,7 @@ body {
     margin: 8px 0;
     min-height: 20px;
     flex-shrink: 0;
+<<<<<<< HEAD
 }
 
 .book-rating .stars {
@@ -1220,6 +1401,27 @@ body {
     font-size: 0.9em;
     display: inline-block;
     letter-spacing: 2px;
+=======
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.book-rating .stars {
+    color: #ffa500;
+    /* Màu cam vàng cho ngôi sao */
+    font-size: 0.95em;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.book-rating .rating-number {
+    color: #666;
+    font-size: 0.85em;
+    font-weight: 500;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .book-price {
@@ -1249,10 +1451,20 @@ body {
     color: var(--primary-color);
 }
 
+<<<<<<< HEAD
 /* --- 7. Khu vực "Điểm Sách" (image_057ac1.jpg) --- */
 .law-content {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Chia 2 cột bằng nhau */
+=======
+
+/* --- 7. Khu vực "Điểm Sách" (image_057ac1.jpg) --- */
+
+.law-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Chia 2 cột bằng nhau */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     gap: 20px;
 }
 
@@ -1335,7 +1547,13 @@ body {
     font-size: 0.85em;
 }
 
+<<<<<<< HEAD
 /* --- Phần Điểm sách --- */
+=======
+
+/* --- Phần Điểm sách --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .diem-sach-section {
     margin-bottom: 30px;
 }
@@ -1354,18 +1572,35 @@ body {
 .diem-sach-featured-wrapper {
     position: relative;
     background-color: white;
+<<<<<<< HEAD
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+=======
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    min-height: 500px;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .diem-sach-featured-slider {
     position: relative;
     width: 100%;
+<<<<<<< HEAD
+=======
+    height: 100%;
+    min-height: 500px;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .diem-sach-featured-slide {
     display: none;
+<<<<<<< HEAD
+=======
+    width: 100%;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .diem-sach-featured-slide.active {
@@ -1376,12 +1611,25 @@ body {
     display: block;
     text-decoration: none;
     color: inherit;
+<<<<<<< HEAD
 }
 
 /* Ảnh sách lớn ở trên */
 .diem-sach-featured-cover {
     width: 100%;
     height: 350px;
+=======
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Ảnh sách lớn ở trên */
+
+.diem-sach-featured-cover {
+    width: 100%;
+    height: 360px;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
@@ -1402,7 +1650,13 @@ body {
     height: 100%;
 }
 
+<<<<<<< HEAD
 /* Nội dung ở dưới ảnh */
+=======
+
+/* Nội dung ở dưới ảnh */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .diem-sach-featured-info {
     background-color: white;
     padding: 20px;
@@ -1473,7 +1727,13 @@ body {
     right: 15px;
 }
 
+<<<<<<< HEAD
 /* Bên phải: Danh sách sách nhỏ */
+=======
+
+/* Bên phải: Danh sách sách nhỏ */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .diem-sach-right {
     display: flex;
     flex-direction: column;
@@ -1487,6 +1747,7 @@ body {
 
 .diem-sach-item {
     background-color: white;
+<<<<<<< HEAD
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -1496,22 +1757,47 @@ body {
 .diem-sach-item:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
+=======
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.diem-sach-item:hover {
+    background-color: #f8f8f8;
+    transform: translateX(2px);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .diem-sach-item-link {
     display: flex;
+<<<<<<< HEAD
     gap: 15px;
     padding: 15px;
+=======
+    gap: 12px;
+    padding: 12px;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     text-decoration: none;
     color: inherit;
 }
 
 .diem-sach-item-cover {
+<<<<<<< HEAD
     flex: 0 0 80px;
     height: 110px;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+=======
+    flex: 0 0 70px;
+    height: 100px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .diem-sach-item-cover img {
@@ -1545,8 +1831,13 @@ body {
 }
 
 .diem-sach-item-title {
+<<<<<<< HEAD
     font-size: 1em;
     font-weight: bold;
+=======
+    font-size: 0.95em;
+    font-weight: 700;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     color: var(--text-color);
     margin: 0;
     line-height: 1.3;
@@ -1570,11 +1861,18 @@ body {
     margin: 0;
 }
 
+<<<<<<< HEAD
 /* Responsive cho phần Điểm sách */
+=======
+
+/* Responsive cho phần Điểm sách */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 768px) {
     .diem-sach-content {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD
     
     .diem-sach-featured-cover {
         height: 280px;
@@ -1592,22 +1890,48 @@ body {
         font-size: 0.9em;
     }
     
+=======
+    .diem-sach-featured-cover {
+        height: 280px;
+    }
+    .diem-sach-featured-info {
+        padding: 15px;
+    }
+    .diem-sach-featured-title {
+        font-size: 1.1em;
+    }
+    .diem-sach-featured-description {
+        font-size: 0.9em;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .diem-sach-nav {
         width: 40px;
         height: 40px;
         font-size: 22px;
     }
+<<<<<<< HEAD
     
     .diem-sach-nav-prev {
         left: 10px;
     }
     
+=======
+    .diem-sach-nav-prev {
+        left: 10px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .diem-sach-nav-next {
         right: 10px;
     }
 }
 
+<<<<<<< HEAD
 /* --- Phần Nâng cấp tài khoản và Sách mua nhiều nhất --- */
+=======
+
+/* --- Phần Nâng cấp tài khoản và Sách mua nhiều nhất --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .upgrade-bestbooks-section {
     display: flex;
     gap: 20px;
@@ -1642,7 +1966,13 @@ body {
     gap: 0;
 }
 
+<<<<<<< HEAD
 /* --- Phần Nâng cấp tài khoản --- */
+=======
+
+/* --- Phần Nâng cấp tài khoản --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .upgrade-section {
     background-color: white;
     padding: 20px;
@@ -1812,7 +2142,13 @@ body {
     color: var(--primary-color);
 }
 
+<<<<<<< HEAD
 /* --- Phần Sách mua nhiều nhất và Sách xem nhiều nhất --- */
+=======
+
+/* --- Phần Sách mua nhiều nhất và Sách xem nhiều nhất --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .right-column .bestbooks-container {
     display: flex;
     flex-direction: column;
@@ -1949,32 +2285,51 @@ body {
     margin-top: 8px;
 }
 
+<<<<<<< HEAD
 /* --- Responsive Design --- */
+=======
+
+/* --- Responsive Design --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 768px) {
     .main-layout {
         flex-direction: column;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .sidebar {
         flex: 1 1 auto;
         width: 100%;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .header-top {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .header-nav {
         flex-direction: column;
         gap: 10px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .search-bar {
         width: 100%;
         max-width: none;
     }
+<<<<<<< HEAD
     
     .main-banner-section {
         grid-template-columns: 1fr;
@@ -1984,11 +2339,20 @@ body {
         height: 300px;
     }
     
+=======
+    .main-banner-section {
+        grid-template-columns: 1fr;
+    }
+    .banner-carousel-wrapper {
+        height: 300px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .carousel-nav {
         width: 40px;
         height: 40px;
         font-size: 1.5em;
     }
+<<<<<<< HEAD
     
     .carousel-prev {
         left: 10px;
@@ -1998,25 +2362,43 @@ body {
         right: 10px;
     }
     
+=======
+    .carousel-prev {
+        left: 10px;
+    }
+    .carousel-next {
+        right: 10px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .right-panels {
         flex-direction: row;
         flex-wrap: wrap;
     }
+<<<<<<< HEAD
     
     .cooperation-section {
         grid-template-columns: 1fr;
     }
     
+=======
+    .cooperation-section {
+        grid-template-columns: 1fr;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .cooperation-banner {
         padding: 25px 20px;
         min-height: auto;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .coop-content {
         flex-direction: column;
         text-align: center;
         gap: 15px;
     }
+<<<<<<< HEAD
     
     .coop-image {
         font-size: 3em;
@@ -2034,21 +2416,44 @@ body {
         font-size: 0.95em;
     }
     
+=======
+    .coop-image {
+        font-size: 3em;
+    }
+    .coop-text h2 {
+        font-size: 1.3em;
+    }
+    .coop-text p {
+        font-size: 0.9em;
+    }
+    .coop-hotline {
+        font-size: 0.95em;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .coop-btn {
         padding: 10px 24px;
         font-size: 0.85em;
         align-self: center;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .panel-card {
         flex: 1 1 calc(50% - 10px);
         min-width: 150px;
     }
+<<<<<<< HEAD
     
     .vip-account-section {
         flex-direction: column;
     }
     
+=======
+    .vip-account-section {
+        flex-direction: column;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .top-selling-books {
         flex: 1 1 auto;
         width: 100%;
@@ -2057,34 +2462,53 @@ body {
         border-left: none;
         border-top: 1px solid var(--border-color);
     }
+<<<<<<< HEAD
     
     .upgrade-bestbooks-section {
         flex-direction: column;
     }
     
+=======
+    .upgrade-bestbooks-section {
+        flex-direction: column;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .right-column {
         flex: 1 1 auto;
         width: 100%;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .bestbooks-container {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .right-column .bestbooks-container {
         flex-direction: column;
         gap: 15px;
     }
+<<<<<<< HEAD
     
     .upgrade-cards {
         gap: 10px;
     }
     
+=======
+    .upgrade-cards {
+        gap: 10px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .upgrade-card {
         flex: 0 0 120px;
         height: 160px;
     }
+<<<<<<< HEAD
     
     .law-content {
         grid-template-columns: 1fr;
@@ -2098,6 +2522,17 @@ body {
         flex: 0 0 150px;
     }
     
+=======
+    .law-content {
+        grid-template-columns: 1fr;
+    }
+    .book-list {
+        gap: 10px;
+    }
+    .book-card {
+        flex: 0 0 150px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .container {
         width: 95%;
         padding: 15px 0;
@@ -2108,6 +2543,7 @@ body {
     .logo {
         font-size: 1em;
     }
+<<<<<<< HEAD
     
     .hotline {
         font-size: 0.8em;
@@ -2129,10 +2565,28 @@ body {
         width: 100%;
     }
     
+=======
+    .hotline {
+        font-size: 0.8em;
+    }
+    .banner-title {
+        font-size: 1.5em;
+    }
+    .main-banner-section {
+        grid-template-columns: 1fr;
+    }
+    .right-panels {
+        flex-direction: column;
+    }
+    .panel-card {
+        width: 100%;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .vip-package {
         flex: 0 0 100px;
         height: 130px;
     }
+<<<<<<< HEAD
     
     .section-title {
         font-size: 1.2em;
@@ -2143,10 +2597,21 @@ body {
     }
     
     .book-cover, .book-cover-img {
+=======
+    .section-title {
+        font-size: 1.2em;
+    }
+    .book-card {
+        flex: 0 0 120px;
+    }
+    .book-cover,
+    .book-cover-img {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         height: 180px;
     }
 }
 
+<<<<<<< HEAD
 /* --- CSS cho Cuộn Ngang Sách (Sách nói) --- */
 .sach-list-container {
     /* 1. Bật Flexbox và Ngăn xuống dòng */
@@ -2166,15 +2631,54 @@ body {
 }
 
 /* Ẩn thanh cuộn trên WebKit (Chrome, Safari, Edge Chromium) */
+=======
+
+/* --- CSS cho Cuộn Ngang Sách (Sách nói) --- */
+
+.sach-list-container {
+    /* 1. Bật Flexbox và Ngăn xuống dòng */
+    display: flex;
+    flex-wrap: nowrap;
+    /* Quan trọng: Giữ tất cả các mục trên một hàng */
+    /* 2. Bật Cuộn Ngang */
+    overflow-x: auto;
+    /* Bật cuộn khi nội dung tràn */
+    /* 3. Khoảng cách và Căn chỉnh */
+    gap: 20px;
+    /* Khoảng cách giữa các cuốn sách */
+    padding: 0 50px;
+    /* Thêm khoảng trống hai bên lề (tùy chọn) */
+    /* 4. Tùy chọn: Ẩn thanh cuộn mặc định */
+    -ms-overflow-style: none;
+    /* Cho IE and Edge */
+    scrollbar-width: none;
+    /* Cho Firefox */
+}
+
+
+/* Ẩn thanh cuộn trên WebKit (Chrome, Safari, Edge Chromium) */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .sach-list-container::-webkit-scrollbar {
     display: none;
 }
 
+<<<<<<< HEAD
 /* CSS cho Mục Con (Từng cuốn sách) */
 .sach-list-container .book-item {
     /* Đặt kích thước cố định và ngăn chúng co lại */
     /* flex-grow: 0 (không dãn), flex-shrink: 0 (không co), flex-basis: 210px (chiều rộng) */
     flex: 0 0 210px !important; /* Đặt chiều rộng cố định cho mỗi cuốn sách */
+=======
+
+/* CSS cho Mục Con (Từng cuốn sách) */
+
+.sach-list-container .book-item {
+    /* Đặt kích thước cố định và ngăn chúng co lại */
+    /* flex-grow: 0 (không dãn), flex-shrink: 0 (không co), flex-basis: 210px (chiều rộng) */
+    flex: 0 0 210px !important;
+    /* Đặt chiều rộng cố định cho mỗi cuốn sách */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     min-width: 210px !important;
     max-width: 210px !important;
     min-height: 400px !important;
@@ -2182,7 +2686,13 @@ body {
     flex-direction: column !important;
 }
 
+<<<<<<< HEAD
 /* --- Tuyển tập hay nhất - Styling đặc biệt nổi bật --- */
+=======
+
+/* --- Tuyển tập hay nhất - Styling đặc biệt nổi bật --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .best-collection-section {
     background: white;
     border-radius: 12px;
@@ -2342,6 +2852,7 @@ body {
     margin: 8px 0;
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     gap: 3px;
 }
 
@@ -2350,6 +2861,19 @@ body {
     font-size: 0.95em;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     letter-spacing: 1px;
+=======
+    gap: 4px;
+}
+
+.best-collection-section .book-rating .stars {
+    color: #ffa500;
+    font-size: 0.95em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .best-collection-section .collection-price {
@@ -2421,40 +2945,67 @@ body {
     line-height: 1;
 }
 
+<<<<<<< HEAD
 /* Responsive cho màn hình nhỏ */
+=======
+
+/* Responsive cho màn hình nhỏ */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 768px) {
     .best-collection-section {
         padding: 25px 15px !important;
         border-radius: 12px;
     }
+<<<<<<< HEAD
     
     .best-collection-section .section-title {
         font-size: 1.5em;
     }
     
+=======
+    .best-collection-section .section-title {
+        font-size: 1.5em;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .best-collection-section .collection-item {
         flex: 0 0 260px !important;
         min-width: 260px !important;
         max-width: 260px !important;
         min-height: 440px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .best-collection-section .collection-nav-prev,
     .best-collection-section .collection-nav-next {
         width: 40px;
         height: 40px;
     }
+<<<<<<< HEAD
     
     .best-collection-section .collection-nav-prev {
         left: -15px;
     }
     
+=======
+    .best-collection-section .collection-nav-prev {
+        left: -15px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .best-collection-section .collection-nav-next {
         right: -15px;
     }
 }
 
+<<<<<<< HEAD
 /* Topics Section Styles */
+=======
+
+/* Topics Section Styles */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .topics-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -2500,7 +3051,13 @@ body {
     word-wrap: break-word;
 }
 
+<<<<<<< HEAD
 /* Responsive Topics Grid */
+=======
+
+/* Responsive Topics Grid */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 1200px) {
     .topics-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -2517,16 +3074,25 @@ body {
     .topics-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .topic-item {
         min-height: 90px;
         padding: 12px;
     }
+<<<<<<< HEAD
     
     .topic-count {
         font-size: 1.3rem;
     }
     
+=======
+    .topic-count {
+        font-size: 1.3rem;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .topic-name {
         font-size: 0.85rem;
     }
@@ -2537,23 +3103,38 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .topic-item {
         min-height: 80px;
         padding: 10px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .topic-count {
         font-size: 1.1rem;
         margin-bottom: 6px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .topic-name {
         font-size: 0.8rem;
     }
 }
 
+<<<<<<< HEAD
 /* Footer Styles */
+=======
+
+/* Footer Styles */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .main-footer {
     background: #e8e8e8;
     position: relative;
@@ -2576,7 +3157,13 @@ body {
     width: 100%;
 }
 
+<<<<<<< HEAD
 /* Footer Left - Logo và Contact */
+=======
+
+/* Footer Left - Logo và Contact */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-left {
     display: flex;
     flex-direction: column;
@@ -2658,7 +3245,13 @@ body {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* Footer Middle - Links */
+=======
+
+/* Footer Middle - Links */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-middle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2733,7 +3326,13 @@ body {
     width: 4px;
 }
 
+<<<<<<< HEAD
 /* Footer Bottom Section */
+=======
+
+/* Footer Bottom Section */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-bottom-section {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -2778,7 +3377,13 @@ body {
     transform: scale(1.1);
 }
 
+<<<<<<< HEAD
 /* App Downloads */
+=======
+
+/* App Downloads */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-app-downloads {
     display: flex;
     flex-direction: column;
@@ -2830,7 +3435,12 @@ body {
     border-radius: 4px;
     transition: all 0.3s;
     width: fit-content;
+<<<<<<< HEAD
     margin-left: calc(15px + 80px); /* Align với QR code (gap + qr width) */
+=======
+    margin-left: calc(15px + 80px);
+    /* Align với QR code (gap + qr width) */
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     margin-top: 8px;
 }
 
@@ -2906,7 +3516,13 @@ body {
     color: white;
 }
 
+<<<<<<< HEAD
 /* Government Badge */
+=======
+
+/* Government Badge */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-government-badge {
     display: flex;
     align-items: flex-start;
@@ -2932,7 +3548,13 @@ body {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
 /* Copyright Bar */
+=======
+
+/* Copyright Bar */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .footer-copyright {
     background: #d4a574;
     color: white;
@@ -2952,7 +3574,13 @@ body {
     margin: 0;
 }
 
+<<<<<<< HEAD
 /* Floating Sidebar */
+=======
+
+/* Floating Sidebar */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .floating-sidebar {
     position: fixed;
     right: 20px;
@@ -2999,7 +3627,13 @@ body {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
 /* Responsive Footer */
+=======
+
+/* Responsive Footer */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 1200px) {
     .footer-middle {
         gap: 40px;
@@ -3011,27 +3645,45 @@ body {
     .footer-main-content {
         padding-bottom: 30px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .footer-middle {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .footer-column-title {
         font-size: 15px;
         margin-bottom: 20px;
     }
+<<<<<<< HEAD
     
     .footer-links-list {
         gap: 10px;
     }
     
+=======
+    .footer-links-list {
+        gap: 10px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .footer-container {
         padding: 40px 15px 0;
     }
 }
 
+<<<<<<< HEAD
 /* --- Phần Tác giả --- */
+=======
+
+/* --- Phần Tác giả --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .author-section {
     margin: 40px 0;
 }
@@ -3150,12 +3802,21 @@ body {
     color: #d9534f;
 }
 
+<<<<<<< HEAD
 /* Responsive cho phần Tác giả */
+=======
+
+/* Responsive cho phần Tác giả */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 1200px) {
     .authors-list {
         justify-content: space-between;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-avatar {
         width: 110px;
         height: 110px;
@@ -3166,12 +3827,18 @@ body {
     .authors-list {
         justify-content: space-between;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-avatar {
         width: 100px;
         height: 100px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-name {
         font-size: 13px;
         max-width: 100px;
@@ -3183,13 +3850,19 @@ body {
         justify-content: center;
         gap: 15px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-avatar {
         width: 90px;
         height: 90px;
         border-width: 2px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-name {
         font-size: 12px;
         max-width: 90px;
@@ -3201,24 +3874,42 @@ body {
         justify-content: center;
         gap: 12px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-avatar {
         width: 80px;
         height: 80px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .author-name {
         font-size: 11px;
         max-width: 80px;
     }
 }
 
+<<<<<<< HEAD
 /* --- Phần Liên hệ - Hợp tác --- */
 .contact-section {
     margin: 40px 0;
     background: #f5f5f5;
     padding: 40px 20px;
     border-radius: 8px;
+=======
+
+/* --- Phần Liên hệ - Hợp tác --- */
+
+.contact-section {
+    margin: 40px 0;
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .contact-section .section-header {
@@ -3320,17 +4011,29 @@ body {
     color: #d9534f;
 }
 
+<<<<<<< HEAD
 /* Responsive cho phần Liên hệ - Hợp tác */
+=======
+
+/* Responsive cho phần Liên hệ - Hợp tác */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 992px) {
     .contact-item {
         flex: 0 0 calc(50% - 10px);
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image-wrapper {
         width: 150px;
         height: 150px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image {
         width: 130px;
         height: 130px;
@@ -3342,21 +4045,33 @@ body {
         justify-content: center;
         gap: 25px;
     }
+<<<<<<< HEAD
     
     .contact-item {
         flex: 0 0 calc(50% - 12px);
     }
     
+=======
+    .contact-item {
+        flex: 0 0 calc(50% - 12px);
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image-wrapper {
         width: 140px;
         height: 140px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image {
         width: 120px;
         height: 120px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-label {
         font-size: 14px;
     }
@@ -3366,28 +4081,46 @@ body {
     .contact-list {
         gap: 20px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-item {
         flex: 0 0 100%;
         max-width: 200px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image-wrapper {
         width: 120px;
         height: 120px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-image {
         width: 100px;
         height: 100px;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .contact-label {
         font-size: 13px;
     }
 }
 
+<<<<<<< HEAD
 /* --- Phần Trân trọng phục vụ --- */
+=======
+
+/* --- Phần Trân trọng phục vụ --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .service-section {
     margin: 40px 0;
 }
@@ -3416,12 +4149,20 @@ body {
 .service-image {
     width: 100%;
     height: 150px;
+<<<<<<< HEAD
     border-radius: 8px;
     overflow: hidden;
     background: #f5f5f5;
     margin-bottom: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+=======
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .service-item:hover .service-image {
@@ -3447,7 +4188,13 @@ body {
     color: #d9534f;
 }
 
+<<<<<<< HEAD
 /* Responsive cho phần Trân trọng phục vụ */
+=======
+
+/* Responsive cho phần Trân trọng phục vụ */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 1200px) {
     .service-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -3459,7 +4206,10 @@ body {
     .service-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .service-image {
         height: 120px;
     }
@@ -3470,17 +4220,29 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
+<<<<<<< HEAD
     
     .service-image {
         height: 100px;
     }
     
+=======
+    .service-image {
+        height: 100px;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .service-label {
         font-size: 12px;
     }
 }
 
+<<<<<<< HEAD
 /* --- Phần Tin tức --- */
+=======
+
+/* --- Phần Tin tức --- */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .news-section {
     margin: 40px 0;
 }
@@ -3493,10 +4255,41 @@ body {
 
 .news-featured {
     flex: 0 0 65%;
+<<<<<<< HEAD
+=======
+    position: relative;
+}
+
+.news-featured-wrapper {
+    position: relative;
+    background-color: white;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    min-height: 500px;
+}
+
+.news-featured-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+.news-featured-slide {
+    display: none;
+    width: 100%;
+}
+
+.news-featured-slide.active {
+    display: block;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .news-featured-card {
     background: white;
+<<<<<<< HEAD
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -3506,11 +4299,25 @@ body {
 .news-featured-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+=======
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.news-featured-card:hover {}
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
 .news-featured-link {
     text-decoration: none;
     color: inherit;
     display: block;
+<<<<<<< HEAD
+=======
+    width: 100%;
+    height: 100%;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .news-featured-image {
@@ -3578,6 +4385,47 @@ body {
     line-height: 1.6;
 }
 
+<<<<<<< HEAD
+=======
+
+/* Navigation buttons cho tin tức slider */
+
+.news-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #666;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.news-nav:hover {
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.1);
+    color: var(--text-color);
+}
+
+.news-nav-prev {
+    left: 15px;
+}
+
+.news-nav-next {
+    right: 15px;
+}
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 .news-list {
     flex: 0 0 35%;
     display: flex;
@@ -3587,6 +4435,7 @@ body {
 
 .news-item {
     background: white;
+<<<<<<< HEAD
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -3595,6 +4444,15 @@ body {
 
 .news-item:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+=======
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.news-item:hover {
+    background: #fafafa;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 }
 
 .news-item-link {
@@ -3677,11 +4535,18 @@ body {
     overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* Responsive cho phần Tin tức */
+=======
+
+/* Responsive cho phần Tin tức */
+
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 @media (max-width: 992px) {
     .news-content {
         flex-direction: column;
     }
+<<<<<<< HEAD
     
     .news-featured {
         flex: 1;
@@ -3691,6 +4556,14 @@ body {
         flex: 1;
     }
     
+=======
+    .news-featured {
+        flex: 1;
+    }
+    .news-list {
+        flex: 1;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .news-featured-image {
         height: 250px;
     }
@@ -3700,6 +4573,7 @@ body {
     .news-featured-image {
         height: 200px;
     }
+<<<<<<< HEAD
     
     .news-featured-info {
         padding: 15px;
@@ -3713,9 +4587,24 @@ body {
         flex-direction: column;
     }
     
+=======
+    .news-featured-info {
+        padding: 15px;
+    }
+    .news-title {
+        font-size: 18px;
+    }
+    .news-item-link {
+        flex-direction: column;
+    }
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     .news-item-image {
         width: 100%;
         height: 150px;
     }
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf

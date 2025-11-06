@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             ReservationSeeder::class,
             RolePermissionSeeder::class,
             NotificationTemplateSeeder::class,
+<<<<<<< HEAD
+=======
+            ViolationSeeder::class,
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             
             // Seeders thống kê nâng cao
             AdvancedDataSeeder::class,

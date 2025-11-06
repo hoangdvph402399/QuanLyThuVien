@@ -68,10 +68,16 @@ Route::post('/books/{id}/comments', [CommentController::class, 'storePublic'])->
 
 // Order Routes
 Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
+<<<<<<< HEAD
 // Đặt GET routes trước POST để tránh conflict
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
 Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+=======
+Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -104,6 +110,7 @@ Route::middleware('auth')->group(function () {
         // For regular users, redirect to home or books page
         return redirect()->route('home');
     })->name('dashboard');
+<<<<<<< HEAD
     
     // Account/Profile Routes
     Route::get('/account', [App\Http\Controllers\UserAccountController::class, 'account'])->name('account');
@@ -113,6 +120,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/account/purchased-documents', [App\Http\Controllers\UserAccountController::class, 'purchasedDocuments'])->name('account.purchased-documents');
     Route::get('/account/change-password', [App\Http\Controllers\UserAccountController::class, 'showChangePassword'])->name('account.change-password');
     Route::put('/account/change-password', [App\Http\Controllers\UserAccountController::class, 'updatePassword'])->name('account.update-password');
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 });
 
 // Admin Routes
@@ -147,8 +156,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('categories/{id}/move-books', [CategoryController::class, 'moveBooks'])->name('categories.move-books')->middleware('permission:edit-categories');
         Route::resource('authors', App\Http\Controllers\Admin\AuthorController::class)->middleware('permission:view-readers');
       Route::resource('books', BookController::class)->middleware('permission:view-books');
+<<<<<<< HEAD
       Route::post('books/{id}/hide', [BookController::class, 'hide'])->name('books.hide')->middleware('permission:edit-books');
       Route::post('books/{id}/unhide', [BookController::class, 'unhide'])->name('books.unhide')->middleware('permission:edit-books');
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
       Route::resource('purchasable-books', App\Http\Controllers\Admin\PurchasableBookController::class)->middleware('permission:view-books');
       Route::get('books-unified', [App\Http\Controllers\Admin\UnifiedBookController::class, 'index'])->name('books.unified')->middleware('permission:view-books');
       Route::resource('readers', ReaderController::class)->middleware('permission:view-readers');
@@ -194,11 +206,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
       Route::post('reservations/{id}/cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel')->middleware('permission:edit-reservations');
       Route::get('reservations/export', [ReservationController::class, 'export'])->name('reservations.export')->middleware('permission:view-reservations');
       
+<<<<<<< HEAD
       // Orders routes (Admin)
       Route::get('orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
       Route::get('orders/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
       Route::put('orders/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('orders.update');
       
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
       // Advanced Reports routes
       Route::get('advanced-reports', [App\Http\Controllers\Admin\AdvancedReportController::class, 'index'])->name('advanced-reports.index')->middleware('permission:view-reports');
       Route::get('advanced-reports/dashboard-stats', [App\Http\Controllers\Admin\AdvancedReportController::class, 'dashboardStats'])->name('advanced-reports.dashboard-stats')->middleware('permission:view-reports');
@@ -276,6 +291,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
       Route::get('inventory-transactions', [InventoryController::class, 'transactions'])->name('inventory.transactions')->middleware('permission:view-books');
       Route::get('inventory-dashboard', [InventoryController::class, 'dashboard'])->name('inventory.dashboard')->middleware('permission:view-books');
       Route::post('inventory/scan-barcode', [InventoryController::class, 'scanBarcode'])->name('inventory.scan-barcode')->middleware('permission:view-books');
+<<<<<<< HEAD
       Route::post('inventory/sync-to-homepage', [InventoryController::class, 'syncToHomepage'])->name('inventory.sync-to-homepage')->middleware('permission:edit-books');
       
       // Inventory Receipts (Phiếu nhập kho)
@@ -294,6 +310,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
       
       // Inventory Report
       Route::get('inventory-report', [InventoryController::class, 'report'])->name('inventory.report')->middleware('permission:view-books');
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
       
       // Admin Management routes
       Route::resource('publishers', App\Http\Controllers\Admin\PublisherController::class)->middleware('permission:view-books');

@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
+<<<<<<< HEAD
 @section('title', 'Quản Lý Sách - LIBHUB Admin')
+=======
+@section('title', 'Quản Lý Sách - WAKA Admin')
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
 @section('content')
 <!-- Page Header -->
@@ -154,6 +158,7 @@
                                        title="Chỉnh sửa">
                                         <i class="fas fa-edit"></i>
                                     </a>
+<<<<<<< HEAD
                                     @if($book->trang_thai === 'active')
                                         <form action="{{ route('admin.books.hide', $book->id) }}" 
                                               method="POST" 
@@ -179,6 +184,20 @@
                                             </button>
                                         </form>
                                     @endif
+=======
+                                    <form action="{{ route('admin.books.destroy', $book->id) }}" 
+                                          method="POST" 
+                                          style="display: inline;"
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa sách này?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-danger" 
+                                                title="Xóa">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                                 </div>
                             </td>
                         </tr>

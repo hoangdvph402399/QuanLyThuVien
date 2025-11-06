@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<<<<<<< HEAD
     <title>@yield('title', 'Admin - Quản Lý Thư Viện LIBHUB')</title>
+=======
+    <title>@yield('title', 'Admin - Quản Lý Thư Viện WAKA')</title>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,6 +25,7 @@
             --accent-blue: #3b82f6;
             --accent-pink: #ec4899;
             
+<<<<<<< HEAD
             --background-dark: #ffffff;
             --background-card: #ffffff;
             --background-elevated: #f9fafb;
@@ -41,6 +46,28 @@
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+=======
+            --background-dark: #0a0a0a;
+            --background-card: #141414;
+            --background-elevated: #1a1a1a;
+            --header-bg: linear-gradient(135deg, #0a2e1a 0%, #052d23 100%);
+            --sidebar-bg: #0d1117;
+            --sidebar-hover: rgba(0, 255, 153, 0.08);
+            --sidebar-active: rgba(0, 255, 153, 0.15);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #d4d4d8;
+            --text-muted: #9ca3af;
+            --text-disabled: #6b7280;
+            
+            --border-color: rgba(0, 255, 153, 0.12);
+            --border-hover: rgba(0, 255, 153, 0.25);
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             --shadow-primary: 0 0 20px rgba(0, 255, 153, 0.15);
             
             --transition-fast: 0.15s;
@@ -128,7 +155,11 @@
         }
 
         .header-search input {
+<<<<<<< HEAD
             background: #f9fafb;
+=======
+            background: rgba(20, 20, 20, 0.6);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             padding: 11px 45px 11px 18px;
@@ -145,11 +176,19 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(0, 255, 153, 0.1), var(--shadow-primary);
             width: 350px;
+<<<<<<< HEAD
             background: #ffffff;
         }
 
         .header-search input::placeholder {
             color: #9ca3af;
+=======
+            background: rgba(20, 20, 20, 0.8);
+        }
+
+        .header-search input::placeholder {
+            color: #888;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         .header-search button {
@@ -179,7 +218,11 @@
             align-items: center;
             gap: 12px;
             padding: 8px 16px 8px 8px;
+<<<<<<< HEAD
             background: #f9fafb;
+=======
+            background: rgba(20, 20, 20, 0.6);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             border-radius: 50px;
@@ -265,7 +308,11 @@
 
         .dropdown-divider {
             height: 1px;
+<<<<<<< HEAD
             background: rgba(0, 0, 0, 0.1);
+=======
+            background: rgba(255, 255, 255, 0.1);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             margin: 8px 0;
         }
 
@@ -286,17 +333,28 @@
 
         /* Sidebar - WAKA Style */
         .sidebar {
+<<<<<<< HEAD
             width: 220px;
             min-width: 220px;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             overflow-y: auto;
             overflow-x: visible;
+=======
+            width: 280px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            overflow-x: hidden;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             position: sticky;
             top: 72px;
             height: calc(100vh - 72px);
             backdrop-filter: blur(10px);
+<<<<<<< HEAD
             flex-shrink: 0;
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
         
         .sidebar::-webkit-scrollbar {
@@ -304,7 +362,11 @@
         }
         
         .sidebar::-webkit-scrollbar-track {
+<<<<<<< HEAD
             background: #f9fafb;
+=======
+            background: var(--sidebar-bg);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
         
         .sidebar::-webkit-scrollbar-thumb {
@@ -318,8 +380,11 @@
         
         .sidebar-menu {
             padding: 24px 0;
+<<<<<<< HEAD
             min-height: auto;
             display: block;
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
         
         .menu-section-title {
@@ -329,6 +394,7 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1.5px;
+<<<<<<< HEAD
             display: block;
             min-height: 40px;
             line-height: 1.5;
@@ -336,6 +402,8 @@
             box-sizing: border-box;
             flex-shrink: 0;
             width: 100%;
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         .menu-item {
@@ -352,6 +420,7 @@
             font-size: 14px;
             font-weight: 500;
             border-radius: 12px;
+<<<<<<< HEAD
             white-space: nowrap;
             min-width: 0;
             overflow: hidden;
@@ -363,6 +432,8 @@
             text-overflow: ellipsis;
             flex: 1;
             min-width: 0;
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         .menu-item::before {
@@ -422,7 +493,11 @@
         }
 
         .submenu {
+<<<<<<< HEAD
             background: rgba(0, 0, 0, 0.02);
+=======
+            background: rgba(0, 0, 0, 0.3);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             overflow: hidden;
             max-height: 0;
             transition: max-height var(--transition-normal) var(--ease-smooth);
@@ -437,7 +512,11 @@
             align-items: center;
             gap: 12px;
             padding: 12px 20px 12px 50px;
+<<<<<<< HEAD
             color: var(--text-muted);
+=======
+            color: #999;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             text-decoration: none;
             transition: all var(--transition-fast);
             font-size: 13px;
@@ -490,7 +569,14 @@
         .page-title {
             font-size: 34px;
             font-weight: 700;
+<<<<<<< HEAD
             color: var(--text-primary);
+=======
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -503,7 +589,11 @@
 
         .page-subtitle {
             font-size: 15px;
+<<<<<<< HEAD
             color: var(--text-muted);
+=======
+            color: #888;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             font-weight: 400;
         }
 
@@ -589,13 +679,22 @@
         }
 
         .btn-secondary {
+<<<<<<< HEAD
             background: #f9fafb;
             border: 1px solid #e5e7eb;
+=======
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             color: var(--text-primary);
         }
 
         .btn-secondary:hover {
+<<<<<<< HEAD
             background: #f3f4f6;
+=======
+            background: rgba(255, 255, 255, 0.15);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             border-color: var(--primary-color);
         }
 
@@ -658,8 +757,13 @@
         .form-control, .form-select {
             width: 100%;
             padding: 12px 16px;
+<<<<<<< HEAD
             background: #ffffff;
             border: 1px solid #e5e7eb;
+=======
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             border-radius: 10px;
             color: var(--text-primary);
             font-family: 'Poppins', sans-serif;
@@ -671,11 +775,19 @@
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(0, 255, 153, 0.1);
+<<<<<<< HEAD
             background: #ffffff;
         }
 
         .form-control::placeholder {
             color: var(--text-muted);
+=======
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-control::placeholder {
+            color: #666;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         textarea.form-control {
@@ -811,7 +923,11 @@
 
         .stat-title {
             font-size: 13px;
+<<<<<<< HEAD
             color: var(--text-muted);
+=======
+            color: #888;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -861,7 +977,11 @@
 
         .stat-label {
             font-size: 13px;
+<<<<<<< HEAD
             color: var(--text-muted);
+=======
+            color: #888;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         /* Alerts */
@@ -931,8 +1051,12 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .sidebar {
+<<<<<<< HEAD
                 width: 240px;
                 min-width: 240px;
+=======
+                width: 250px;
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             }
 
             .main-content {
@@ -990,7 +1114,11 @@
         }
 
         ::-webkit-scrollbar-track {
+<<<<<<< HEAD
             background: #f9fafb;
+=======
+            background: var(--background-dark);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         ::-webkit-scrollbar-thumb {
@@ -1028,10 +1156,24 @@
             <button class="mobile-menu-toggle" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
+<<<<<<< HEAD
             <div class="logo"><span style="color: #dc2626;">THƯ VIỆN</span> <span style="color: #000000;">LIBHUB</span></div>
         </div>
         
         <div class="header-right">
+=======
+            <div class="logo">WAKA ADMIN</div>
+        </div>
+        
+        <div class="header-right">
+            <div class="header-search">
+                <form action="#" method="GET">
+                    <input type="text" name="q" placeholder="Tìm kiếm...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                </div>
+                
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             <div class="user-menu">
                 <button class="btn-user" onclick="toggleUserMenu()">
                     <div class="user-avatar">
@@ -1045,6 +1187,17 @@
                         <i class="fas fa-home"></i>
                         Về trang chủ
                     </a>
+<<<<<<< HEAD
+=======
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        Hồ sơ của tôi
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        Cài đặt
+                    </a>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                     <div class="dropdown-divider"></div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -1084,6 +1237,7 @@
                     <i class="fas fa-building"></i>
                     <span>Nhà xuất bản</span>
                 </a>
+<<<<<<< HEAD
 
                 <!-- Quản lý kho -->
                 <div class="menu-section-title">QUẢN LÝ KHO</div>
@@ -1115,6 +1269,12 @@
                 <a href="{{ route('admin.inventory.report') }}" class="menu-item {{ request()->routeIs('admin.inventory.report') ? 'active' : '' }}">
                     <i class="fas fa-chart-bar"></i>
                     <span>Báo cáo kho</span>
+=======
+                @if(Route::has('admin.authors.index'))
+                <a href="{{ route('admin.authors.index') }}" class="menu-item {{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Tác giả</span>
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                 </a>
                 @endif
 
@@ -1156,6 +1316,7 @@
                     <span>Duyệt trả sách</span>
                 </a>
 
+<<<<<<< HEAD
                 <!-- Quản lý đơn hàng -->
                 <div class="menu-section-title">QUẢN LÝ ĐƠN HÀNG</div>
                 <a href="{{ route('admin.orders.index') }}" class="menu-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
@@ -1163,6 +1324,8 @@
                     <span>Quản lý đơn hàng</span>
                 </a>
 
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                 <!-- Tài chính -->
                 @if(Route::has('admin.fines.index'))
                 <div class="menu-section-title">TÀI CHÍNH</div>

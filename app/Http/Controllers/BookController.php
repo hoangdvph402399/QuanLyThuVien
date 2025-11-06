@@ -204,6 +204,7 @@ class BookController extends Controller
         return redirect()->route('admin.books.index')->with('success', 'Cập nhật sách thành công!');
     }
 
+<<<<<<< HEAD
     public function hide($id)
     {
         $book = Book::findOrFail($id);
@@ -227,6 +228,8 @@ class BookController extends Controller
     }
 
     // Giữ lại method destroy để tương thích (nếu cần)
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     public function destroy($id)
     {
         Book::destroy($id);

@@ -34,6 +34,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         // Log để debug
         \Log::info('OrderController@store called', [
             'method' => $request->method(),
@@ -82,11 +83,22 @@ class OrderController extends Controller
                 'errors' => $e->errors()
             ], 422);
         }
+=======
+        $request->validate([
+            'customer_name' => 'required|string|max:255',
+            'customer_email' => 'required|email|max:255',
+            'customer_phone' => 'nullable|string|max:20',
+            'customer_address' => 'nullable|string|max:500',
+            'payment_method' => 'required|in:cash_on_delivery,bank_transfer',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
         $cart = $this->getCurrentCart();
         $cartItems = $cart->items()->with('purchasableBook')->get();
         
         if ($cartItems->isEmpty()) {
+<<<<<<< HEAD
             // Log để debug
             \Log::warning('OrderController@store: Cart is empty', [
                 'method' => $request->method(),
@@ -107,6 +119,12 @@ class OrderController extends Controller
             // Nếu không phải AJAX, redirect về trang giỏ hàng
             return redirect()->route('cart.index')
                 ->with('error', 'Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm vào giỏ hàng trước khi đặt hàng.');
+=======
+            return response()->json([
+                'success' => false,
+                'message' => 'Giỏ hàng của bạn đang trống'
+            ], 400);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         }
 
         // Kiểm tra số lượng tồn kho trước khi đặt hàng
@@ -123,6 +141,7 @@ class OrderController extends Controller
         DB::beginTransaction();
         
         try {
+<<<<<<< HEAD
             // Xác định payment_status dựa trên payment_method
             $paymentStatus = 'pending';
             if ($request->payment_method === 'cash_on_delivery') {
@@ -133,6 +152,8 @@ class OrderController extends Controller
                 $paymentStatus = 'pending';
             }
             
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             // Tạo đơn hàng
             $order = Order::create([
                 'order_number' => Order::generateOrderNumber(),
@@ -147,7 +168,11 @@ class OrderController extends Controller
                 'shipping_amount' => 0, // Miễn phí vận chuyển cho sách điện tử
                 'total_amount' => $cart->total_amount,
                 'status' => 'pending',
+<<<<<<< HEAD
                 'payment_status' => $paymentStatus,
+=======
+                'payment_status' => 'pending',
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
                 'payment_method' => $request->payment_method,
                 'notes' => $request->notes,
             ]);
@@ -174,6 +199,7 @@ class OrderController extends Controller
             $cart->update(['total_amount' => 0, 'total_items' => 0]);
 
             DB::commit();
+<<<<<<< HEAD
             
             // Log thành công
             \Log::info('Order created successfully', [
@@ -199,10 +225,20 @@ class OrderController extends Controller
             // Redirect trực tiếp cho non-AJAX requests
             return redirect()->route('orders.index')
                 ->with('success', 'Đặt hàng thành công! Mã đơn hàng: ' . $order->order_number);
+=======
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Đặt hàng thành công!',
+                'order_number' => $order->order_number,
+                'redirect_url' => route('orders.show', $order->id)
+            ]);
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
 
         } catch (\Exception $e) {
             DB::rollback();
             
+<<<<<<< HEAD
             // Log lỗi chi tiết
             \Log::error('Order creation failed', [
                 'error' => $e->getMessage(),
@@ -210,6 +246,8 @@ class OrderController extends Controller
                 'request' => $request->all()
             ]);
             
+=======
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
             return response()->json([
                 'success' => false,
                 'message' => 'Có lỗi xảy ra khi đặt hàng: ' . $e->getMessage()
@@ -235,6 +273,7 @@ class OrderController extends Controller
     /**
      * Hiển thị danh sách đơn hàng của user
      */
+<<<<<<< HEAD
     public function index(Request $request)
     {
         // Log để debug
@@ -258,6 +297,10 @@ class OrderController extends Controller
             abort(405, 'Method not allowed');
         }
         
+=======
+    public function index()
+    {
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
         $query = Order::with('items');
         
         if (Auth::check()) {
@@ -267,6 +310,7 @@ class OrderController extends Controller
         }
         
         $orders = $query->orderBy('created_at', 'desc')->paginate(10);
+<<<<<<< HEAD
         
         // Chỉ trả JSON nếu request từ API route (api/*)
         // Tất cả request từ web route (/orders) sẽ trả về HTML
@@ -298,6 +342,10 @@ class OrderController extends Controller
         $response->header('Expires', '0');
         
         return $response;
+=======
+
+        return view('orders.index', compact('orders'));
+>>>>>>> 79bb0e42208b1628f2f3714635423e5a62e8febf
     }
 
     /**
