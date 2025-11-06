@@ -1,10 +1,17 @@
+@php
+/**
+ * @var \Illuminate\Support\Collection $featured_books
+ * @var \App\Models\Book $book
+ * @var array $bannerImages
+ */
+@endphp
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libhub - Thư viện Trực tuyến</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
 </head>
 <body>
     <header class="main-header">
@@ -16,6 +23,29 @@
                     <span class="logo-part2">LIBHUB</span>
                 </div>
             </div>
+            <script>
+                (function(){
+                    function setupSlider(wrapperId){
+                        var slider = document.getElementById(wrapperId);
+                        if(!slider) return;
+                        var slides = slider.querySelectorAll('.diem-sach-featured-slide');
+                        if(!slides || slides.length <= 1) return;
+                        var current = 0;
+                        function show(i){
+                            slides[current].classList.remove('active');
+                            current = (i + slides.length) % slides.length;
+                            slides[current].classList.add('active');
+                        }
+                        var prevBtn = document.querySelector('.diem-sach-nav-prev[data-target="'+wrapperId+'"]');
+                        var nextBtn = document.querySelector('.diem-sach-nav-next[data-target="'+wrapperId+'"]');
+                        if(prevBtn){ prevBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); show(current-1); }); }
+                        if(nextBtn){ nextBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); show(current+1); }); }
+                    }
+                    document.addEventListener('DOMContentLoaded', function(){
+                        setupSlider('diemSachSlider');
+                    });
+                })();
+            </script>
             <div class="hotline-section">
                 <div class="hotline-item">
                     <span class="hotline-label">Hotline khách lẻ:</span>
@@ -34,45 +64,92 @@
                 </a>
                 @auth
                     <div class="user-menu-dropdown" style="position: relative;">
-                        <a href="#" class="auth-link user-menu-toggle" onclick="event.preventDefault(); toggleUserMenu();">
+                        <a href="#" class="auth-link user-menu-toggle">
                             <span class="user-icon">👤</span>
                             <span>{{ auth()->user()->name }}</span>
                         </a>
-                        <div class="user-dropdown-menu" id="userDropdownMenu" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-width: 200px; z-index: 1000; margin-top: 5px;">
-                            <a href="{{ route('dashboard') }}" class="dropdown-item" style="display: block; padding: 10px 15px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
-                                <span>📊</span> Dashboard
+                        <div class="user-dropdown-menu">
+                            <div class="dropdown-header" style="padding: 12px 15px; border-bottom: 1px solid #eee; font-weight: 600; color: #333;">
+                                <span class="user-icon">👤</span>
+                                {{ auth()->user()->name }}
+                            </div>
+                            <a href="{{ route('account.purchased-books') }}" class="dropdown-item">
+                                <span>❤️</span> Sách đã mua
+                            </a>
+                            <a href="{{ route('account') }}" class="dropdown-item">
+                                <span>👤</span> Thông tin tài khoản
+                            </a>
+                            <a href="{{ route('account.change-password') }}" class="dropdown-item">
+                                <span>🔒</span> Đổi mật khẩu
+                            </a>
+                            <a href="{{ route('orders.index') }}" class="dropdown-item">
+                                <span>⏰</span> Lịch sử mua hàng
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <span>💳</span> Lịch sử nạp tiền
                             </a>
                             @if(auth()->user()->role === 'admin' || auth()->user()->role === 'staff')
-                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item" style="display: block; padding: 10px 15px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
-                                <span>⚙️</span> Quản trị
+                            <div style="border-top: 1px solid #eee; margin-top: 5px;"></div>
+                            <a href="{{ route('dashboard') }}" class="dropdown-item">
+                                <span>📊</span> Dashboard
                             </a>
                             @endif
                             <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
                                 @csrf
-                                <button type="submit" class="dropdown-item" style="display: block; width: 100%; padding: 10px 15px; color: #d32f2f; text-decoration: none; border: none; background: none; text-align: left; cursor: pointer; border-top: 1px solid #eee;">
-                                    <span>🚪</span> Đăng xuất
+                                <button type="submit" class="dropdown-item logout-btn">
+                                    <span>➡️</span> Đăng xuất
                                 </button>
                             </form>
                         </div>
                     </div>
-                    <script>
-                        function toggleUserMenu() {
-                            const menu = document.getElementById('userDropdownMenu');
-                            if (menu.style.display === 'none') {
-                                menu.style.display = 'block';
-                            } else {
-                                menu.style.display = 'none';
-                            }
+                    <style>
+                        .user-menu-dropdown {
+                            position: relative;
                         }
-                        // Đóng menu khi click bên ngoài
-                        document.addEventListener('click', function(event) {
-                            const menu = document.getElementById('userDropdownMenu');
-                            const toggle = document.querySelector('.user-menu-toggle');
-                            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                                menu.style.display = 'none';
-                            }
-                        });
-                    </script>
+                        .user-menu-dropdown .user-dropdown-menu {
+                            display: none;
+                            position: absolute;
+                            top: calc(100% + 5px);
+                            right: 0;
+                            background: white;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                            min-width: 220px;
+                            z-index: 1000;
+                            overflow: hidden;
+                        }
+                        .user-menu-dropdown:hover .user-dropdown-menu {
+                            display: block;
+                        }
+                        .user-menu-dropdown .dropdown-item {
+                            display: block;
+                            padding: 10px 15px;
+                            color: #333;
+                            text-decoration: none;
+                            border-bottom: 1px solid #eee;
+                            transition: background-color 0.2s;
+                            cursor: pointer;
+                        }
+                        .user-menu-dropdown .dropdown-item:hover {
+                            background-color: #f5f5f5;
+                        }
+                        .user-menu-dropdown .dropdown-item.logout-btn {
+                            border: none;
+                            background: none;
+                            width: 100%;
+                            text-align: left;
+                            color: #d32f2f;
+                            border-top: 1px solid #eee;
+                            margin-top: 5px;
+                        }
+                        .user-menu-dropdown .dropdown-item.logout-btn:hover {
+                            background-color: #ffebee;
+                        }
+                        .user-menu-dropdown .dropdown-item span {
+                            margin-right: 8px;
+                        }
+                    </style>
                 @else
                     <a href="{{ route('login') }}" class="auth-link">Đăng nhập</a>
                 @endauth
@@ -266,12 +343,11 @@
                         <img src="{{ $cooperationImage }}" alt="LIÊN KẾT - HỢP TÁC XUẤT BẢN" class="cooperation-image">
                     @endif
                     <div class="coop-content">
-                        <div class="coop-image">👩‍💼</div>
                         <div class="coop-text">
                             <h2>LIÊN KẾT - HỢP TÁC XUẤT BẢN</h2>
                             <p>Hiện thực hóa cuốn sách của bạn</p>
                             <p class="coop-hotline">HOTLINE: 0327.888.669</p>
-                            <button class="coop-btn">XEM CHI TIẾT</button>
+                            <button class="coop-btn"><span>XEM CHI TIẾT</span></button>
                         </div>
                     </div>
                 </div>
@@ -326,7 +402,7 @@
                             </div>
                         @empty
                             @if(isset($featured_books) && $featured_books->count() > 0)
-                                @foreach($featured_books->take(6) as $book)
+                                @foreach($featured_books->take(10) as $book)
                                     <div class="book-item">
                                         <a href="{{ route('books.show', $book->id) }}" class="book-link">
                                             <div class="book-cover">
@@ -487,7 +563,7 @@
                                     </div>
                                 @empty
                                     @if(isset($featured_books) && $featured_books->count() > 0)
-                                        @foreach($featured_books->take(6) as $book)
+                                        @foreach($featured_books->take(10) as $book)
                                             <div class="book-item">
                                                 <a href="{{ route('books.show', $book->id) }}" class="book-link">
                                                     <div class="book-cover">
@@ -557,7 +633,7 @@
                                     </div>
                                 @empty
                                     @if(isset($featured_books) && $featured_books->count() > 0)
-                                        @foreach($featured_books->take(6) as $book)
+                                        @foreach($featured_books->take(10) as $book)
                                             <div class="book-item">
                                                 <a href="{{ route('books.show', $book->id) }}" class="book-link">
                                                     <div class="book-cover">
@@ -627,7 +703,7 @@
                                     </div>
                                 @empty
                                     @if(isset($featured_books) && $featured_books->count() > 0)
-                                        @foreach($featured_books->take(3) as $book)
+                                        @foreach($featured_books->take(6) as $book)
                                             <div class="book-item">
                                                 <a href="{{ route('books.show', $book->id) }}" class="book-link">
                                                     <div class="book-cover">
@@ -745,7 +821,7 @@
                 </div>
                 <div class="book-carousel-wrapper">
                     <div class="book-list sach-list-container" id="sach-noi-bat-carousel">
-                        @foreach($featured_books->take(6) as $book)
+                        @foreach($featured_books->take(10) as $book)
                             <div class="book-item">
                                 <a href="{{ route('books.show', $book->id) }}" class="book-link">
                                     <div class="book-cover">
@@ -958,92 +1034,143 @@
                     }
                 @endphp
                 <div class="diem-sach-content">
-                    <!-- Bên trái: Sách lớn (1 ảnh duy nhất) -->
+                    <!-- Bên trái: Slider ảnh lớn với nút điều hướng -->
                     <div class="diem-sach-left">
+                        @php
+                            $slides = [];
+                            // Ưu tiên sử dụng Documents (Văn bản luật) cho Điểm sách
+                            if(isset($documents) && $documents->count() > 0) {
+                                foreach($documents->take(4) as $idx => $doc) {
+                                    $img = null;
+                                    if($diemSachImages['featured'] && $idx === 0) {
+                                        $img = $diemSachImages['featured'];
+                                    } elseif(isset($diemSachImages[$idx]) && $diemSachImages[$idx]) {
+                                        $img = $diemSachImages[$idx];
+                                    } elseif(isset($doc->image) && !empty($doc->image) && file_exists(public_path('storage/'.$doc->image))) {
+                                        $img = asset('storage/'.$doc->image);
+                                    }
+
+                                    $slides[] = [
+                                        'link' => route('documents.show', $doc->id),
+                                        'img' => $img,
+                                        'title' => $doc->title,
+                                        'date' => $doc->published_date ? $doc->published_date->format('d/m/Y') : ($doc->created_at ? $doc->created_at->format('d/m/Y') : 'N/A'),
+                                        'desc' => $doc->description ?? 'Đang cập nhật mô tả...'
+                                    ];
+                                }
+                            } else {
+                                // Fallback: Nếu không có documents, dùng sách
+                                if(isset($diem_sach_featured) && $diem_sach_featured) {
+                                    $img = null;
+                                    if($diemSachImages['featured']) {
+                                        $img = $diemSachImages['featured'];
+                                    } elseif(isset($diem_sach_featured->hinh_anh) && !empty($diem_sach_featured->hinh_anh) && file_exists(public_path('storage/'.$diem_sach_featured->hinh_anh))) {
+                                        $img = asset('storage/'.$diem_sach_featured->hinh_anh);
+                                    }
+                                    $slides[] = [
+                                        'link' => route('books.show', $diem_sach_featured->id),
+                                        'img' => $img,
+                                        'title' => $diem_sach_featured->ten_sach,
+                                        'date' => $diem_sach_featured->created_at ? $diem_sach_featured->created_at->format('d/m/Y') : 'N/A',
+                                        'desc' => $diem_sach_featured->mo_ta ?? 'Đang cập nhật mô tả...'
+                                    ];
+                                }
+
+                                // Thêm tối đa 3 slide từ danh sách sách
+                                $diemSachList = isset($diem_sach_list) ? $diem_sach_list->values() : collect();
+                                for($i = 1; $i <= 3; $i++) {
+                                    $book = $diemSachList->get($i - 1);
+                                    $img = $diemSachImages[$i] ?? null;
+                                    if(!$img && $book && isset($book->hinh_anh) && !empty($book->hinh_anh) && file_exists(public_path('storage/'.$book->hinh_anh))) {
+                                        $img = asset('storage/'.$book->hinh_anh);
+                                    }
+                                    if($img || $book) {
+                                        $slides[] = [
+                                            'link' => $book ? route('books.show', $book->id) : 'javascript:void(0)',
+                                            'img' => $img,
+                                            'title' => $book->ten_sach ?? ('Điểm sách '.$i),
+                                            'date' => $book && $book->created_at ? $book->created_at->format('d/m/Y') : 'N/A',
+                                            'desc' => $book->mo_ta ?? 'Đang cập nhật mô tả...'
+                                        ];
+                                    }
+                                }
+                            }
+                        @endphp
                         <div class="diem-sach-featured-wrapper">
-                            @if(isset($diem_sach_featured) && $diem_sach_featured)
-                                <a href="{{ route('books.show', $diem_sach_featured->id) }}" class="diem-sach-featured-link">
-                                    <div class="diem-sach-featured-cover">
-                                        @if($diemSachImages['featured'])
-                                            <img src="{{ $diemSachImages['featured'] }}" alt="{{ $diem_sach_featured->ten_sach }}">
-                                        @elseif(isset($diem_sach_featured->hinh_anh) && !empty($diem_sach_featured->hinh_anh) && file_exists(public_path('storage/'.$diem_sach_featured->hinh_anh)))
-                                            <img src="{{ asset('storage/'.$diem_sach_featured->hinh_anh) }}" alt="{{ $diem_sach_featured->ten_sach }}">
-                                        @else
-                                            <svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="210" height="297" fill="#f0f0f0"/>
-                                                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#999">📚</text>
-                                            </svg>
-                                        @endif
+                            <div class="diem-sach-featured-slider" id="diemSachSlider">
+                                @foreach($slides as $idx => $s)
+                                    <div class="diem-sach-featured-slide {{ $idx === 0 ? 'active' : '' }}">
+                                        <a href="{{ $s['link'] }}" class="diem-sach-featured-link" @if($s['link']==='javascript:void(0)') style="cursor: default;" @endif>
+                                            <div class="diem-sach-featured-cover">
+                                                @if(!empty($s['img']))
+                                                    <img src="{{ $s['img'] }}" alt="{{ $s['title'] }}">
+                                                @else
+                                                    <svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="210" height="297" fill="#f0f0f0"/>
+                                                        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#999">📚</text>
+                                                    </svg>
+                                                @endif
+                                            </div>
+                                            <div class="diem-sach-featured-info">
+                                                <p class="diem-sach-featured-date">{{ $s['date'] }}</p>
+                                                <h3 class="diem-sach-featured-title">
+                                                    <span class="diem-sach-title-icon">📄</span>
+                                                    {{ $s['title'] }}
+                                                </h3>
+                                                <p class="diem-sach-featured-description">{{ Str::limit($s['desc'], 200) }}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="diem-sach-featured-info">
-                                        <p class="diem-sach-featured-date">{{ $diem_sach_featured->created_at ? $diem_sach_featured->created_at->format('d/m/Y') : 'N/A' }}</p>
-                                        <h3 class="diem-sach-featured-title">
-                                            <span class="diem-sach-title-icon">📄</span>
-                                            {{ $diem_sach_featured->ten_sach }}
-                                        </h3>
-                                        <p class="diem-sach-featured-description">{{ Str::limit($diem_sach_featured->mo_ta ?? 'Đang cập nhật mô tả...', 200) }}</p>
-                                    </div>
-                                </a>
-                            @else
-                                <!-- Nếu không có dữ liệu, hiển thị banner từ admin -->
-                                @if($diemSachImages['featured'])
-                                    <div class="diem-sach-featured-link" style="cursor: default;">
-                                        <div class="diem-sach-featured-cover">
-                                            <img src="{{ $diemSachImages['featured'] }}" alt="Điểm sách nổi bật">
-                                        </div>
-                                        <div class="diem-sach-featured-info">
-                                            <p class="diem-sach-featured-date"></p>
-                                            <h3 class="diem-sach-featured-title">
-                                                <span class="diem-sach-title-icon">📄</span>
-                                                Điểm sách nổi bật
-                                            </h3>
-                                            <p class="diem-sach-featured-description">Đang cập nhật mô tả...</p>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="diem-sach-featured-link" style="cursor: default;">
-                                        <div class="diem-sach-featured-cover">
-                                            <svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="210" height="297" fill="#f0f0f0"/>
-                                                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#999">📚</text>
-                                            </svg>
-                                        </div>
-                                        <div class="diem-sach-featured-info">
-                                            <p class="diem-sach-featured-date"></p>
-                                            <h3 class="diem-sach-featured-title">
-                                                <span class="diem-sach-title-icon">📄</span>
-                                                Chưa có điểm sách
-                                            </h3>
-                                            <p class="diem-sach-featured-description">Đang cập nhật...</p>
-                                        </div>
-                                    </div>
-                                @endif
+                                @endforeach
+                            </div>
+                            @if(count($slides) > 1)
+                                <button class="diem-sach-nav diem-sach-nav-prev" data-target="diemSachSlider" aria-label="Previous">‹</button>
+                                <button class="diem-sach-nav diem-sach-nav-next" data-target="diemSachSlider" aria-label="Next">›</button>
                             @endif
                         </div>
                     </div>
                     
-                    <!-- Bên phải: Danh sách 3 sách nhỏ -->
+                    <!-- Bên phải: Danh sách 3 item nhỏ -->
                     <div class="diem-sach-right">
                         <div class="diem-sach-list">
                             @php
-                                // Luôn hiển thị đủ 3 sách nhỏ
-                                $diemSachList = isset($diem_sach_list) ? $diem_sach_list->values() : collect();
+                                // Ưu tiên documents, fallback sang sách
+                                $rightItems = collect();
+                                if(isset($documents) && $documents->count() > 0) {
+                                    // Bỏ qua item đầu tiên (đã dùng cho slider), lấy 3 item tiếp theo
+                                    $rightItems = $documents->skip(1)->take(3);
+                                } else {
+                                    $rightItems = isset($diem_sach_list) ? $diem_sach_list->values()->take(3) : collect();
+                                }
                             @endphp
-                            @for($i = 1; $i <= 3; $i++)
+                            @for($i = 0; $i < 3; $i++)
                                 @php
-                                    $book = $diemSachList->get($i - 1);
+                                    $item = $rightItems->get($i);
+                                    $isDocument = $item && isset($item->title); // Document có 'title', Book có 'ten_sach'
                                 @endphp
                                 <div class="diem-sach-item">
-                                    @if($book)
-                                        <a href="{{ route('books.show', $book->id) }}" class="diem-sach-item-link">
+                                    @if($item)
+                                        <a href="{{ $isDocument ? route('documents.show', $item->id) : route('books.show', $item->id) }}" class="diem-sach-item-link">
                                     @else
                                         <div class="diem-sach-item-link" style="cursor: default;">
                                     @endif
                                         <div class="diem-sach-item-cover">
-                                            @if(isset($diemSachImages[$i]) && $diemSachImages[$i])
-                                                <img src="{{ $diemSachImages[$i] }}" alt="{{ $book->ten_sach ?? 'Điểm sách ' . $i }}">
-                                            @elseif($book && isset($book->hinh_anh) && !empty($book->hinh_anh) && file_exists(public_path('storage/'.$book->hinh_anh)))
-                                                <img src="{{ asset('storage/'.$book->hinh_anh) }}" alt="{{ $book->ten_sach }}">
+                                            @php
+                                                $imgKey = $i + 1;
+                                                $hasAdminImage = isset($diemSachImages[$imgKey]) && $diemSachImages[$imgKey];
+                                                $itemImage = null;
+                                                if($item) {
+                                                    if($isDocument && isset($item->image) && !empty($item->image)) {
+                                                        $itemImage = asset('storage/'.$item->image);
+                                                    } elseif(!$isDocument && isset($item->hinh_anh) && !empty($item->hinh_anh)) {
+                                                        $itemImage = asset('storage/'.$item->hinh_anh);
+                                                    }
+                                                }
+                                            @endphp
+                                            @if($hasAdminImage)
+                                                <img src="{{ $diemSachImages[$imgKey] }}" alt="{{ $isDocument ? ($item->title ?? 'Điểm sách') : ($item->ten_sach ?? 'Điểm sách') }}">
+                                            @elseif($itemImage && file_exists(public_path('storage/'.($isDocument ? $item->image : $item->hinh_anh))))
+                                                <img src="{{ $itemImage }}" alt="{{ $isDocument ? $item->title : $item->ten_sach }}">
                                             @else
                                                 <svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
                                                     <rect width="210" height="297" fill="#f0f0f0"/>
@@ -1054,12 +1181,22 @@
                                         <div class="diem-sach-item-info">
                                             <div class="diem-sach-item-header">
                                                 <span class="diem-sach-item-icon">📄</span>
-                                                <h4 class="diem-sach-item-title">{{ $book->ten_sach ?? 'Điểm sách ' . $i }}</h4>
+                                                <h4 class="diem-sach-item-title">
+                                                    {{ $item ? ($isDocument ? $item->title : $item->ten_sach) : ('Điểm sách ' . ($i + 1)) }}
+                                                </h4>
                                             </div>
-                                            <p class="diem-sach-item-description">{{ Str::limit($book->mo_ta ?? 'Đang cập nhật mô tả...', 100) }}</p>
-                                            <p class="diem-sach-item-date">{{ $book && $book->created_at ? $book->created_at->format('d/m/Y') : 'N/A' }}</p>
+                                            <p class="diem-sach-item-description">
+                                                {{ $item ? Str::limit($isDocument ? ($item->description ?? 'Đang cập nhật...') : ($item->mo_ta ?? 'Đang cập nhật...'), 100) : 'Đang cập nhật mô tả...' }}
+                                            </p>
+                                            <p class="diem-sach-item-date">
+                                                @if($item)
+                                                    {{ $isDocument ? ($item->published_date ? $item->published_date->format('d/m/Y') : ($item->created_at ? $item->created_at->format('d/m/Y') : 'N/A')) : ($item->created_at ? $item->created_at->format('d/m/Y') : 'N/A') }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </p>
                                         </div>
-                                    @if($book)
+                                    @if($item)
                                         </a>
                                     @else
                                         </div>
@@ -1111,48 +1248,90 @@
                         }
                     }
                 @endphp
+                @php
+                    // Tạo slides cho tin tức
+                    $newsSlides = [];
+
+                    // Slide 1: tin tức nổi bật
+                    if(isset($featuredNews) && $featuredNews) {
+                        $img = null;
+                        if($newsImages['featured']) {
+                            $img = $newsImages['featured'];
+                        } elseif(isset($featuredNews->image) && !empty($featuredNews->image) && file_exists(public_path('storage/'.$featuredNews->image))) {
+                            $img = asset('storage/'.$featuredNews->image);
+                        }
+                        $newsSlides[] = [
+                            'link' => route('documents.show', $featuredNews->id),
+                            'img' => $img,
+                            'title' => $featuredNews->title,
+                            'date' => $featuredNews->published_date ? $featuredNews->published_date->format('d/m/Y') : '',
+                            'desc' => $featuredNews->description ?? '',
+                            'id' => $featuredNews->id
+                        ];
+                    } elseif($newsImages['featured']) {
+                        $newsSlides[] = [
+                            'link' => '#',
+                            'img' => $newsImages['featured'],
+                            'title' => 'Tin tức nổi bật',
+                            'date' => '',
+                            'desc' => 'Đang cập nhật...',
+                            'id' => null
+                        ];
+                    }
+
+                    // Thêm tối đa 3 slide từ danh sách bên phải
+                    $otherNewsList = isset($otherNews) ? $otherNews->values() : collect();
+                    for($i = 1; $i <= 3; $i++) {
+                        $item = $otherNewsList->get($i - 1);
+                        $img = $newsImages[$i] ?? null;
+                        if(!$img && $item && isset($item->image) && !empty($item->image) && file_exists(public_path('storage/'.$item->image))) {
+                            $img = asset('storage/'.$item->image);
+                        }
+                        if($img || $item) {
+                            $newsSlides[] = [
+                                'link' => $item ? route('documents.show', $item->id) : '#',
+                                'img' => $img,
+                                'title' => $item->title ?? ('Tin tức '.$i),
+                                'date' => $item && $item->published_date ? (is_string($item->published_date) ? \Carbon\Carbon::parse($item->published_date)->format('d/m/Y') : $item->published_date->format('d/m/Y')) : '',
+                                'desc' => $item->description ?? 'Đang cập nhật...',
+                                'id' => $item->id ?? null
+                            ];
+                        }
+                    }
+                @endphp
+
                 <div class="news-content">
-                    <!-- Tin tức nổi bật bên trái -->
+                    <!-- Tin tức nổi bật bên trái với slider -->
                     <div class="news-featured">
-                        @if(isset($featuredNews) && $featuredNews)
-                            <div class="news-featured-card">
-                                <a href="{{ $featuredNews->link_url ?? '#' }}" class="news-featured-link">
-                                    <div class="news-featured-image">
-                                        @if($newsImages['featured'])
-                                            <img src="{{ $newsImages['featured'] }}" alt="{{ $featuredNews->title }}">
-                                        @elseif($featuredNews->image && file_exists(public_path('storage/'.$featuredNews->image)))
-                                            <img src="{{ asset('storage/'.$featuredNews->image) }}" alt="{{ $featuredNews->title }}">
-                                        @else
-                                            <div class="news-placeholder">
-                                                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="400" height="300" fill="#f0f0f0"/>
-                                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="40" fill="#999">📰</text>
-                                                </svg>
+                        <div class="news-featured-wrapper">
+                            <div class="news-featured-slider" id="newsSlider">
+                                @foreach($newsSlides as $idx => $slide)
+                                    <div class="news-featured-slide {{ $idx === 0 ? 'active' : '' }}">
+                                        <a href="{{ $slide['link'] }}" class="news-featured-link">
+                                            <div class="news-featured-image">
+                                                @if(!empty($slide['img']))
+                                                    <img src="{{ $slide['img'] }}" alt="{{ $slide['title'] }}">
+                                                @else
+                                                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="400" height="300" fill="#f0f0f0"/>
+                                                        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="40" fill="#999">📰</text>
+                                                    </svg>
+                                                @endif
                                             </div>
-                                        @endif
+                                            <div class="news-featured-info">
+                                                <p class="news-date">{{ $slide['date'] }}</p>
+                                                <h3 class="news-title">{{ $slide['title'] }}</h3>
+                                                <p class="news-description">{{ Str::limit($slide['desc'], 150) }}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="news-featured-info">
-                                        <p class="news-date">{{ $featuredNews->published_date ? $featuredNews->published_date->format('d/m/Y') : '' }}</p>
-                                        <h3 class="news-title">{{ $featuredNews->title }}</h3>
-                                        <p class="news-description">{{ Str::limit($featuredNews->description ?? '', 150) }}</p>
-                                    </div>
-                                </a>
+                                @endforeach
                             </div>
-                        @else
-                            <div class="news-featured-card">
-                                <div class="news-placeholder-large">
-                                    @if($newsImages['featured'])
-                                        <img src="{{ $newsImages['featured'] }}" alt="Tin tức nổi bật">
-                                    @else
-                                        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="400" height="300" fill="#f0f0f0"/>
-                                            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="40" fill="#999">📰</text>
-                                        </svg>
-                                        <p>Chưa có tin tức</p>
-                                    @endif
-                                </div>
-                            </div>
-                        @endif
+                            @if(count($newsSlides) > 1)
+                                <button class="news-nav news-nav-prev" aria-label="Previous">‹</button>
+                                <button class="news-nav news-nav-next" aria-label="Next">›</button>
+                            @endif
+                        </div>
                     </div>
                     <!-- 3 tin tức nhỏ bên phải -->
                     <div class="news-list">
@@ -1165,8 +1344,8 @@
                                 $item = $otherNewsList->get($i - 1);
                             @endphp
                             <div class="news-item">
-                                @if($item && $item->link_url)
-                                    <a href="{{ $item->link_url }}" class="news-item-link">
+                                @if($item)
+                                    <a href="{{ route('documents.show', $item->id) }}" class="news-item-link">
                                 @else
                                     <div class="news-item-link" style="cursor: default;">
                                 @endif
@@ -1185,17 +1364,17 @@
                                         @endif
                                     </div>
                                     <div class="news-item-info">
-                                        @if($item && $item->published_date)
+                                        @if($item)
                                             <p class="news-date-small">{{ $item->published_date ? (is_string($item->published_date) ? \Carbon\Carbon::parse($item->published_date)->format('d/m/Y') : $item->published_date->format('d/m/Y')) : '' }}</p>
                                             <h4 class="news-title-small">{{ Str::limit($item->title ?? 'Tin tức ' . $i, 80) }}</h4>
-                                            <p class="news-description-small">{{ Str::limit($item->description ?? '', 60) }}</p>
+                                            <p class="news-description-small">{{ Str::limit(($item->description ?? 'Đang cập nhật mô tả...'), 80) }}</p>
                                         @else
                                             <p class="news-date-small"></p>
                                             <h4 class="news-title-small">Chưa có tin tức</h4>
                                             <p class="news-description-small"></p>
                                         @endif
                                     </div>
-                                @if($item && $item->link_url)
+                                @if($item)
                                     </a>
                                 @else
                                     </div>
@@ -1526,57 +1705,243 @@
     </main>
         
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        let totalSlides = slides.length;
+        // Tự động scroll về đầu trang khi reload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
         
-        function showSlide(index) {
-            // Ẩn tất cả slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            if(dots.length > 0) {
-                dots.forEach(dot => dot.classList.remove('active'));
+        // Scroll về đầu trang khi trang load
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+        
+        // Scroll về đầu trang khi DOM ready (đảm bảo scroll ngay cả khi load chậm)
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+            
+            // Khởi tạo carousel slides sau khi DOM đã sẵn sàng
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            let totalSlides = slides.length;
+            
+            function showSlide(index) {
+                // Ẩn tất cả slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                if(dots.length > 0) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                }
+                
+                // Đảm bảo index trong phạm vi hợp lệ
+                if (index >= totalSlides) {
+                    currentSlideIndex = 0;
+                } else if (index < 0) {
+                    currentSlideIndex = totalSlides - 1;
+                } else {
+                    currentSlideIndex = index;
+                }
+                
+                // Hiển thị slide hiện tại
+                if(slides[currentSlideIndex]) {
+                    slides[currentSlideIndex].classList.add('active');
+                }
+                if(dots[currentSlideIndex]) {
+                    dots[currentSlideIndex].classList.add('active');
+                }
             }
             
-            // Đảm bảo index trong phạm vi hợp lệ
-            if (index >= totalSlides) {
-                currentSlideIndex = 0;
-            } else if (index < 0) {
-                currentSlideIndex = totalSlides - 1;
+            function changeSlide(direction) {
+                showSlide(currentSlideIndex + direction);
+            }
+            
+            function currentSlide(index) {
+                showSlide(index - 1);
+            }
+            
+            // Tự động chuyển slide mỗi 5 giây
+            if(totalSlides > 1) {
+                setInterval(() => {
+                    changeSlide(1);
+                }, 5000);
+            }
+            
+            // Khởi tạo slide đầu tiên
+            if(totalSlides > 0) {
+                showSlide(0);
+            }
+            
+            // Hiển thị/ẩn nút navigation khi hover
+            const bookCarouselWrappers = document.querySelectorAll('.book-carousel-wrapper');
+            bookCarouselWrappers.forEach(wrapper => {
+                const navButtons = wrapper.querySelectorAll('.book-nav');
+                wrapper.addEventListener('mouseenter', () => {
+                    navButtons.forEach(btn => {
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'all';
+                    });
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    navButtons.forEach(btn => {
+                        btn.style.opacity = '0';
+                        btn.style.pointerEvents = 'none';
+                    });
+                });
+            });
+
+            // Điểm sách slider functionality
+            const diemSachSlider = document.getElementById('diemSachSlider');
+            console.log('Điểm sách slider element:', diemSachSlider);
+
+            if (diemSachSlider) {
+                let currentDiemSachIndex = 0;
+                const diemSachSlides = diemSachSlider.querySelectorAll('.diem-sach-featured-slide');
+                const totalDiemSachSlides = diemSachSlides.length;
+
+                console.log('Total Điểm sách slides:', totalDiemSachSlides);
+                console.log('Slides:', diemSachSlides);
+
+                function showDiemSachSlide(index) {
+                    console.log('Showing slide:', index);
+                    // Ẩn tất cả slides
+                    diemSachSlides.forEach(slide => slide.classList.remove('active'));
+
+                    // Đảm bảo index trong phạm vi hợp lệ
+                    if (index >= totalDiemSachSlides) {
+                        currentDiemSachIndex = 0;
+                    } else if (index < 0) {
+                        currentDiemSachIndex = totalDiemSachSlides - 1;
+                    } else {
+                        currentDiemSachIndex = index;
+                    }
+
+                    // Hiển thị slide hiện tại
+                    if (diemSachSlides[currentDiemSachIndex]) {
+                        diemSachSlides[currentDiemSachIndex].classList.add('active');
+                        console.log('Active slide:', currentDiemSachIndex);
+                    }
+                }
+
+                function changeDiemSachSlide(direction) {
+                    console.log('Changing slide, direction:', direction);
+                    showDiemSachSlide(currentDiemSachIndex + direction);
+                }
+
+                // Gắn sự kiện cho nút navigation
+                const prevBtn = document.querySelector('.diem-sach-nav-prev');
+                const nextBtn = document.querySelector('.diem-sach-nav-next');
+
+                console.log('Prev button:', prevBtn);
+                console.log('Next button:', nextBtn);
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        console.log('Prev button clicked');
+                        changeDiemSachSlide(-1);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        console.log('Next button clicked');
+                        changeDiemSachSlide(1);
+                    });
+                }
+
+                // Tự động chuyển slide mỗi 5 giây
+                if (totalDiemSachSlides > 1) {
+                    setInterval(() => {
+                        changeDiemSachSlide(1);
+                    }, 5000);
+                }
+
+                // Khởi tạo slide đầu tiên
+                if (totalDiemSachSlides > 0) {
+                    showDiemSachSlide(0);
+                }
             } else {
-                currentSlideIndex = index;
+                console.log('Điểm sách slider not found!');
             }
-            
-            // Hiển thị slide hiện tại
-            if(slides[currentSlideIndex]) {
-                slides[currentSlideIndex].classList.add('active');
+
+            // Tin tức slider functionality
+            const newsSlider = document.getElementById('newsSlider');
+            console.log('Tin tức slider element:', newsSlider);
+
+            if (newsSlider) {
+                let currentNewsIndex = 0;
+                const newsSlides = newsSlider.querySelectorAll('.news-featured-slide');
+                const totalNewsSlides = newsSlides.length;
+
+                console.log('Total Tin tức slides:', totalNewsSlides);
+                console.log('Slides:', newsSlides);
+
+                function showNewsSlide(index) {
+                    console.log('Showing news slide:', index);
+                    // Ẩn tất cả slides
+                    newsSlides.forEach(slide => slide.classList.remove('active'));
+
+                    // Đảm bảo index trong phạm vi hợp lệ
+                    if (index >= totalNewsSlides) {
+                        currentNewsIndex = 0;
+                    } else if (index < 0) {
+                        currentNewsIndex = totalNewsSlides - 1;
+                    } else {
+                        currentNewsIndex = index;
+                    }
+
+                    // Hiển thị slide hiện tại
+                    if (newsSlides[currentNewsIndex]) {
+                        newsSlides[currentNewsIndex].classList.add('active');
+                        console.log('Active news slide:', currentNewsIndex);
+                    }
+                }
+
+                function changeNewsSlide(direction) {
+                    console.log('Changing news slide, direction:', direction);
+                    showNewsSlide(currentNewsIndex + direction);
+                }
+
+                // Gắn sự kiện cho nút navigation
+                const prevBtn = document.querySelector('.news-nav-prev');
+                const nextBtn = document.querySelector('.news-nav-next');
+
+                console.log('News Prev button:', prevBtn);
+                console.log('News Next button:', nextBtn);
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        console.log('News Prev button clicked');
+                        changeNewsSlide(-1);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        console.log('News Next button clicked');
+                        changeNewsSlide(1);
+                    });
+                }
+
+                // Tự động chuyển slide mỗi 5 giây
+                if (totalNewsSlides > 1) {
+                    setInterval(() => {
+                        changeNewsSlide(1);
+                    }, 5000);
+                }
+
+                // Khởi tạo slide đầu tiên
+                if (totalNewsSlides > 0) {
+                    showNewsSlide(0);
+                }
+            } else {
+                console.log('Tin tức slider not found!');
             }
-            if(dots[currentSlideIndex]) {
-                dots[currentSlideIndex].classList.add('active');
-            }
-        }
+        });
         
-        function changeSlide(direction) {
-            showSlide(currentSlideIndex + direction);
-        }
-        
-        function currentSlide(index) {
-            showSlide(index - 1);
-        }
-        
-        // Tự động chuyển slide mỗi 5 giây
-        if(totalSlides > 1) {
-            setInterval(() => {
-                changeSlide(1);
-            }, 5000);
-        }
-        
-        // Khởi tạo slide đầu tiên
-        if(totalSlides > 0) {
-            showSlide(0);
-        }
-        
-        // Function scroll carousel cho phần Bảng Xếp Hạng
+        // Function scroll carousel cho phần Bảng Xếp Hạng (để global để có thể gọi từ HTML)
         function scrollCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
             if (!carousel) return;
@@ -1590,24 +1955,6 @@
                 behavior: 'smooth'
             });
         }
-        
-        // Hiển thị/ẩn nút navigation khi hover
-        const bookCarouselWrappers = document.querySelectorAll('.book-carousel-wrapper');
-        bookCarouselWrappers.forEach(wrapper => {
-            const navButtons = wrapper.querySelectorAll('.book-nav');
-            wrapper.addEventListener('mouseenter', () => {
-                navButtons.forEach(btn => {
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'all';
-                });
-            });
-            wrapper.addEventListener('mouseleave', () => {
-                navButtons.forEach(btn => {
-                    btn.style.opacity = '0';
-                    btn.style.pointerEvents = 'none';
-                });
-            });
-        });
         
     </script>
     

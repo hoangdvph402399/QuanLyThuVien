@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
     <link href="{{ asset('css/waka-homepage.css') }}" rel="stylesheet">
@@ -15,6 +16,8 @@
     
     <!-- Ultra Modern Homepage CSS -->
     <style>
+        /* Base page background to avoid dark hero bleed on detail pages */
+        body { background: #f8f8f8; color: #333; }
         /* Ultra Modern Hero Section */
         .hero-ultra-modern {
             background: #000000;
@@ -1694,107 +1697,124 @@
     </style>
 </head>
 <body>
-    <!-- Navigation - Commented out -->
-    <!--
-    <nav class="navbar navbar-expand-lg navbar-dark modern-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <i class="fas fa-book"></i> Thư Viện Online
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
-                            <i class="fas fa-home"></i> Trang chủ
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('books.*') ? 'active' : '' }}" href="{{ route('books.public') }}">
-                            <i class="fas fa-book"></i> Danh sách sách
-                        </a>
-                    </li>
-                    {{-- Link trang sách có thể mua đã bị xóa
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('purchasable-books.*') ? 'active' : '' }}" href="{{ route('purchasable-books.index') }}">
-                            <i class="fas fa-shopping-cart"></i> Mua sách
-                        </a>
-                    </li>
-                    --}}
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}" href="{{ route('categories.index') }}">
-                            <i class="fas fa-tags"></i> Thể loại
-                        </a>
-                    </li>
-                </ul>
-                
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link position-relative" href="{{ route('cart.index') }}">
-                            <i class="fas fa-shopping-cart"></i> Giỏ hàng
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
-                                  id="cart-count" 
-                                  style="display: none;">
-                                0
-                            </span>
-                        </a>
-                    </li>
-                    
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user"></i> {{ Auth::user()->name }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                @if(Auth::user()->role === 'admin')
-                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                                        <i class="fas fa-cog"></i> Quản trị
-                                    </a></li>
-                                @endif
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">
-                                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <i class="fas fa-sign-in-alt"></i> Đăng nhập
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register.reader.form') }}">
-                                <i class="fas fa-book-reader"></i> Đăng ký độc giả
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">
-                                <i class="fas fa-user-plus"></i> Đăng ký
-                            </a>
-                        </li>
-                    @endauth
-                </ul>
+    <!-- Global Header for detail pages -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo-section">
+                <img class="logo-img" src="{{ asset('images/logo.png') }}" alt="Logo" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="logo-part1">NHÀ XUẤT BẢN XÂY DỰNG</span>
+                    <span class="logo-part2">BỘ XÂY DỰNG</span>
+                </div>
+            </div>
+            <div class="hotline-section">
+                <div class="hotline-item">
+                    <span class="hotline-label">Hotline khách lẻ</span>
+                    <a class="hotline-number" href="tel:0327888669">0327 888 669</a>
+                </div>
+                <div class="hotline-item">
+                    <span class="hotline-label">Hotline khách sỉ</span>
+                    <a class="hotline-number" href="tel:02439741791">0243 974 1791</a>
+                </div>
+            </div>
+            <div class="user-actions">
+                <a class="cart-link" href="{{ route('cart.index') }}">🛒 Giỏ hàng <span class="cart-badge" id="cart-count">0</span></a>
+                @guest
+                    <a class="auth-link" href="{{ route('login') }}">Đăng nhập</a>
+                @endguest
             </div>
         </div>
-    </nav>
-    -->
+        <div class="header-nav">
+            <div class="search-bar">
+                <form action="{{ route('books.public') }}" method="GET" class="search-form">
+                    <input type="text" class="search-input" name="keyword" value="{{ request('keyword') }}" placeholder="Tìm sách, tác giả, sản phẩm mong muốn...">
+                    <button class="search-button" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content -->
     <main>
         @yield('content')
     </main>
 
-    <!-- Footer removed for custom page-specific footers -->
+    <!-- Global Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-main-content">
+                @php
+                    // Load optional footer images from storage/banners/footer-*.ext
+                    $footerImages = [];
+                    $bannerDir = public_path('storage/banners');
+                    $extensions = ['jpg','jpeg','png','webp'];
+                    if(file_exists($bannerDir)) {
+                        for($i=1; $i<=6; $i++) {
+                            foreach($extensions as $ext) {
+                                $path = $bannerDir . '/footer-' . $i . '.' . $ext;
+                                if(file_exists($path)) { $footerImages[$i] = asset('storage/banners/footer-' . $i . '.' . $ext); break; }
+                            }
+                        }
+                    }
+                @endphp
+
+                @if(!empty($footerImages))
+                <div class="footer-logos" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:center;justify-items:center;margin-bottom:30px;width:100%;max-width:1200px;">
+                    @for($i=1;$i<=6;$i++)
+                        <div style="width:100%;height:80px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #e0e0e0;">
+                            @if(isset($footerImages[$i]))
+                                <img src="{{ $footerImages[$i] }}" alt="footer-{{ $i }}" style="max-width:100%;max-height:100%;object-fit:contain;">
+                            @else
+                                <i class="fas fa-image" style="color:#bbb;font-size:20px;"></i>
+                            @endif
+                        </div>
+                    @endfor
+                </div>
+                @endif
+                <div class="footer-middle">
+                    <div class="footer-column">
+                        <div class="footer-column-title">Chúng tôi phục vụ</div>
+                        <ul class="footer-links-list">
+                            <li><a href="#">Bộ Xây dựng</a></li>
+                            <li><a href="#">Nhà sách</a></li>
+                            <li><a href="#">Trường đại học</a></li>
+                            <li><a href="#">Doanh nghiệp/ Tổ chức</a></li>
+                            <li><a href="#">Quản lý thư viện</a></li>
+                            <li><a href="#">Sinh viên</a></li>
+                            <li><a href="#">Viện Nghiên cứu</a></li>
+                            <li><a href="#">Tác giả</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Về chúng tôi</div>
+                        <ul class="footer-links-list">
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Các đối tác</a></li>
+                            <li><a href="#">Phát triển bởi VHMT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Chính sách và điều khoản</div>
+                        <ul class="footer-links-list">
+                            <li><a href="#">Cách thức vận chuyển</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Chính sách khách hàng mua sỉ</a></li>
+                            <li><a href="#">Điều khoản sử dụng</a></li>
+                            <li><a href="#">Chính sách hồi hoàn</a></li>
+                            <li><a href="#">Hướng dẫn đăng ký tài khoản</a></li>
+                            <li><a href="#">Hướng dẫn đọc sách ebook</a></li>
+                            <li><a href="#">Hướng dẫn kiểm tra tem sách</a></li>
+                            <li><a href="#">Hướng dẫn thuê sách ebook</a></li>
+                            <li><a href="#">Hướng dẫn nạp tiền vào ví</a></li>
+                            <li><a href="#">Hướng dẫn mua sách giấy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright"><p>Copyright © 2017 - NHÀ XUẤT BẢN XÂY DỰNG - BỘ XÂY DỰNG. All rights reserved.</p></div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
